@@ -1,0 +1,13 @@
+{
+    "carmel": {
+        "property": {
+            "id": "62d2711e6e5cd6f30b74abb0",
+            "name": "codelambs"
+        },
+        "settlement": {
+            "id": "62d270bc6e5cd6f30b74abaf",
+            "name": "ftstudio",
+            "type": "city"
+        }
+    }
+}
