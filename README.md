@@ -1,5 +1,5 @@
 <p align="center"> 
-<h2 align="center"> Carmel </h2>
+<h2 align="center"> CodeLambs </h2>
 <h4 align="center"> 
 Computational Thinking Education For Children
 </h4>
