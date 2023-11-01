@@ -1,5 +1,3 @@
-import { greenDark, greenLight } from "../../utils/constants"
-
 interface RowProps {
 	rowIndex: number
 	row: any[][]
