@@ -41,7 +41,7 @@ const Game = () => {
 				</div>
 			</div>
 			<div className='h-full flex flex-col gap-[2vw]'>
-				<ProfileBoard image='/images/user photo example.png' name='DAViD' />
+				<ProfileBoard image='/images/user photo example.png' name='DaViD' />
 				<SheepBoard image='/images/lamb for board.png' title='25 XP LEV.1' />
 			</div>
 		</div>

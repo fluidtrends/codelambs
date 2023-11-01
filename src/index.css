@@ -11,6 +11,15 @@ body,
   margin: 0;
 }
 
+@font-face {
+  font-family: 'singly-list';
+  src: url(../public/fonts/singly-list.otf);
+}
+
+* {
+  font-family: 'singly-list';
+}
+
 #root {
   background-image: url('/images/background.png');
   background-repeat: no-repeat;
