@@ -17,12 +17,12 @@ export const getControls = (controlsText: ControlProps[], onClick: any, moreClas
 
 export const getSheep = (orientation: Coordinates): string =>
 	orientation === Coordinates.NORTH
-		? '/images/lamb - N.png'
+		? '/images/lamb N.png'
 		: orientation === Coordinates.SOUTH
-			? '/images/lamb - S.png'
+			? '/images/lamb S.png'
 			: orientation === Coordinates.EAST
-				? '/images/lamb - E.png'
-				: '/images/lamb - W.png';
+				? '/images/lamb E.png'
+				: '/images/lamb W.png';
 
 export const willLambBeInBounderies = (
 	{ x, y }: LambBoardGameDetails,
