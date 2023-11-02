@@ -13,7 +13,7 @@ body,
 
 @font-face {
   font-family: 'singly-list';
-  src: url('fonts/singly-list.otf') format('opentype');
+  src: url('assets/fonts/singly-list.otf') format('opentype');
 }
 
 * {
