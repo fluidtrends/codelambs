@@ -72,13 +72,13 @@ const Game = () => {
 						setCoordinate={(coordinate: Coordinates) => setCoordinate(coordinate)}
 						setNumber={(number: number) => setNumber(number)}
 						start={start}
-						onClickStart={handleOnClickStart}
+						onClickStart={start ? undefined : handleOnClickStart}
 					/>
 				</div>
 			</div>
 			<div className='h-full flex flex-col gap-[2vw]'>
 				<ProfileBoard image='/images/user photo example.png' name='DaViD' />
-				<LambBoard image='/images/lamb - S.png' title='25 XP LEV.1' />
+				<LambBoard image='/images/lamb S.png' title='25 XP LEV.1' />
 			</div>
 		</div>
 	)
