@@ -5,7 +5,9 @@ import { coordinates, numbers } from "../../utils/constants"
 
 const Controls = ({
 	setCoordinate,
-	setNumber
+	setNumber,
+	start,
+	onClickStart
 }: any) => {
 
 	return (
@@ -13,11 +15,11 @@ const Controls = ({
 			<RoundControls
 				controlImage='/images/button compass active.png'
 				controlAlternativeImage='/images/button compass.png'
-				buttons={getControls(coordinates, setCoordinate, { width: '3.5vw', height: '3.5vw', margin: '-1.75vw' })}
+				buttons={getControls(coordinates, setCoordinate, { width: '4vw', height: '4vw', margin: '-2vw' })}
 				initialAngle={180}
 			/>
-			<PlayButton />
-			<RoundControls controlImage='/images/button 1-9.png' buttons={getControls(numbers, setNumber)} initialAngle={70} />
+			<PlayButton start={start} onClickStart={onClickStart} />
+			<RoundControls controlImage='/images/button 1-9.png' buttons={getControls(numbers, setNumber, { width: '3.25vw', height: '3.25vw', margin: '-1.625vw' })} initialAngle={70} />
 		</div>
 	)
 }

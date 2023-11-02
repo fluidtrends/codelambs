@@ -1,13 +1,21 @@
 import { useElementSize } from 'usehooks-ts'
 import Row from './Row'
+import { LambBoardGameDetails } from '../../utils/interfaces'
 
 interface BoardProps {
 	board: any[][]
+	position: LambBoardGameDetails
 }
 
-const Board = ({ board }: BoardProps) => {
+const Board = ({ board, position }: BoardProps) => {
 	const [ref, { width }] = useElementSize()
-	const getRows = () => board.map((row, index) => <Row row={row} rowIndex={index} key={index} boardWidth={width} />)
+	const getRows = () => board.map((row, index) => <Row
+		row={row}
+		rowIndex={index}
+		key={index}
+		boardWidth={width}
+		position={position}
+	/>)
 
 	return (
 		<div

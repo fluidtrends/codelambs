@@ -21,3 +21,9 @@ export interface ControlButtonProps {
 	moreClasses?: CSSProperties
 	onClick: () => void
 }
+
+export interface LambBoardGameDetails {
+	x: number
+	y: number
+	orientation: Coordinates
+}

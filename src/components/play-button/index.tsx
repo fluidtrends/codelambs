@@ -1,8 +1,10 @@
-const PlayButton = () => {
+const PlayButton = ({ start, onClickStart }: any) => {
 	return (
-		<div className='w-[8vw] h-[8vw] relative'>
-			<img src='/images/button play.png' className='w-full h-full' />
-		</div>
+		<img
+			src={start ? '/images/button play active.png' : '/images/button play.png'}
+			className='w-[8vw] h-[8vw] hover:cursor-pointer'
+			onClick={onClickStart}
+		/>
 	)
 }
 
