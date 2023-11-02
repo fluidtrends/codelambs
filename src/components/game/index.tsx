@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Board from "../board"
 import { board } from "../board/mockData"
 import Controls from "../controls"
