@@ -4,13 +4,12 @@ import { LambBoardGameDetails } from "../../utils/interfaces"
 interface RowProps {
 	rowIndex: number
 	row: any[][]
-	boardWidth: number
+	cellSize: number
 	position: LambBoardGameDetails
 }
 
-const Row = ({ rowIndex, row, boardWidth, position }: RowProps) => {
+const Row = ({ rowIndex, row, cellSize, position }: RowProps) => {
 	const { x, y, orientation } = position
-	const cellSize = boardWidth / row.length
 
 	const getRow = () =>
 		row.map((_, index) => <div
@@ -28,7 +27,7 @@ const Row = ({ rowIndex, row, boardWidth, position }: RowProps) => {
 		</div>)
 
 	return (
-		<div className={`w-[${boardWidth}px] flex flex-row`}>
+		<div className={`flex flex-row`}>
 			{getRow()}
 		</div>
 	)

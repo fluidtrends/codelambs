@@ -8,18 +8,22 @@ interface BoardProps {
 }
 
 const Board = ({ board, position }: BoardProps) => {
-	const [ref, { width }] = useElementSize()
+	const [ref, { height, width }] = useElementSize()
+
+	const cellSize = height / board.length
+	// const cellSize = width / board[0].length
+
 	const getRows = () => board.map((row, index) => <Row
 		row={row}
 		rowIndex={index}
 		key={index}
-		boardWidth={width}
+		cellSize={cellSize}
 		position={position}
 	/>)
 
 	return (
 		<div
-			className='flex flex-col w-full'
+			className='flex flex-col h-full relative my-[1vw] scale-[90%]'
 			ref={ref}
 			style={{
 				backgroundSize: 'cover',
@@ -27,6 +31,9 @@ const Board = ({ board, position }: BoardProps) => {
 				backgroundImage: "url('images/layer under the grass squares.png')"
 			}}
 		>
+			<div className='absolute w-full h-full z-10 flex justify-center items-center'>
+				<img src='/images/playing field frame.png' className='w-full h-full scale-x-[114%] scale-y-[120%]' />
+			</div>
 			{getRows()}
 		</div>
 	)

@@ -9,6 +9,7 @@ export interface LetterProps {
 export interface StepProps {
 	direction: Coordinates
 	count: number
+	id: string
 }
 
 export interface ControlProps {
@@ -20,6 +21,7 @@ export interface ControlButtonProps {
 	image: string
 	moreClasses?: CSSProperties
 	onClick: () => void
+	translate?: number
 }
 
 export interface LambBoardGameDetails {

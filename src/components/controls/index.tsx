@@ -1,7 +1,17 @@
 import RoundControls from "../round-controls"
 import PlayButton from "../play-button"
 import { getControls } from "../../utils/helper"
-import { coordinates, numbers } from "../../utils/constants"
+import {
+	coordinateControlMargin,
+	coordinateControlSize,
+	coordinates,
+	coordinatesInitialAngle,
+	numberControlMargin,
+	numberControlSize,
+	numberTranslate,
+	numbers,
+	numbersInitialAngle
+} from "../../utils/constants"
 
 const Controls = ({
 	setCoordinate,
@@ -15,11 +25,23 @@ const Controls = ({
 			<RoundControls
 				controlImage='/images/button compass active.png'
 				controlAlternativeImage='/images/button compass.png'
-				buttons={getControls(coordinates, setCoordinate, { width: '4vw', height: '4vw', margin: '-2vw' })}
-				initialAngle={180}
+				buttons={getControls(coordinates, setCoordinate, {
+					width: `${coordinateControlSize}vw`,
+					height: `${coordinateControlSize}vw`,
+					margin: `${coordinateControlMargin}vw`
+				})}
+				initialAngle={coordinatesInitialAngle}
 			/>
 			<PlayButton start={start} onClickStart={onClickStart} />
-			<RoundControls controlImage='/images/button 1-9.png' buttons={getControls(numbers, setNumber, { width: '3.25vw', height: '3.25vw', margin: '-1.625vw' })} initialAngle={70} />
+			<RoundControls
+				controlImage='/images/button 1-9.png'
+				buttons={getControls(numbers, setNumber, {
+					width: `${numberControlSize}vw`,
+					height: `${numberControlSize}vw`,
+					margin: `${numberControlMargin}vw`,
+				}, numberTranslate)}
+				initialAngle={numbersInitialAngle}
+			/>
 		</div>
 	)
 }

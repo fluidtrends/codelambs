@@ -8,11 +8,17 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
 }
 
-export const getControls = (controlsText: ControlProps[], onClick: any, moreClasses?: CSSProperties): ControlButtonProps[] =>
+export const getControls = (
+	controlsText: ControlProps[],
+	onClick: any,
+	moreClasses?: CSSProperties,
+	translate?: number
+): ControlButtonProps[] =>
 	controlsText.map(({ image, text }) => ({
 		image,
 		onClick: () => onClick(text),
-		moreClasses
+		moreClasses,
+		translate
 	}))
 
 export const getSheep = (orientation: Coordinates): string =>

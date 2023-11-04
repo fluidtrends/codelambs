@@ -22,8 +22,8 @@ const RoundControls = ({ controlImage, controlAlternativeImage, buttons, initial
 			return {
 				...button,
 				moreClasses: {
+					transform: `rotate(${angle}deg) translate(${button?.translate ?? 5}vw) rotate(-${angle}deg)`,
 					...button?.moreClasses,
-					transform: `rotate(${angle}deg) translate(5vw) rotate(-${angle}deg)`
 				}
 			}
 		})
