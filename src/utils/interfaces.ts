@@ -9,7 +9,7 @@ export interface LetterProps {
 export interface StepProps {
 	direction: Coordinates
 	count: number
-	id: string
+	id?: string
 }
 
 export interface ControlProps {
