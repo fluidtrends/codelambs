@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react"
+import { useRef } from "react"
 import Step from "./Step"
 import { useDraggable } from "react-use-draggable-scroll"
 
