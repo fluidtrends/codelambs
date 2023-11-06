@@ -16,10 +16,6 @@ const StepsBoard = ({ steps, selectedStep, setSeletectedStep, onDelete }: any) =
 		{...step}
 	/>)
 
-	useEffect(() => {
-		(ref?.current as any)?.scrollIntoView({ behavior: 'smooth' });
-	});
-
 	return (
 		<div className='h-full relative'>
 			<img src='/images/code editor board.png' className='w-full h-full absolute z-10' />

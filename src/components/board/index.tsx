@@ -12,7 +12,6 @@ const Board = ({ board, position }: BoardProps) => {
 
 	const cellSize = height / board.length
 
-	//test  
 	const getRows = () => board.map((row, index) => <Row
 		row={row}
 		rowIndex={index}
