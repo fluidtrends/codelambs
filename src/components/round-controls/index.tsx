@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, CSSProperties } from 'react'
 import { ControlButtonProps } from "../../utils/interfaces"
 import Button from "./Button"
 
@@ -7,9 +7,10 @@ interface RoundControlsProps {
 	initialAngle: number
 	controlImage: string
 	controlAlternativeImage?: string
+	style?: CSSProperties
 }
 
-const RoundControls = ({ controlImage, controlAlternativeImage, buttons, initialAngle }: RoundControlsProps) => {
+const RoundControls = ({ controlImage, controlAlternativeImage, buttons, initialAngle, style }: RoundControlsProps) => {
 
 	const [showButtons, setShowButtons] = useState(true)
 
@@ -32,7 +33,8 @@ const RoundControls = ({ controlImage, controlAlternativeImage, buttons, initial
 	const getButtons = () => getButtonsClasses().map((button, index) => <Button {...button} key={index} />)
 
 	return (
-		<div className='w-[10vw] h-[10vw] m-[1vw] relative flex justify-center items-center'>
+		<div className='w-[10vw] h-[10vw] mx-[1vw] relative flex justify-center items-center'
+			style={style}>
 			<img
 				src={showButtons ? controlImage : (controlAlternativeImage ?? controlImage)}
 				className='w-[6vw] h-[6hw] hover:cursor-pointer'

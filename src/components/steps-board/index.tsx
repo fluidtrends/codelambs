@@ -17,7 +17,7 @@ const StepsBoard = ({ steps, selectedStep, setSeletectedStep, onDelete }: any) =
 	/>)
 
 	return (
-		<div className='h-full relative'>
+		<div className='h-full overflow-auto relative'>
 			<img src='/images/code editor board.png' className='w-full h-full absolute z-10' />
 			<div className='w-full h-full py-[2vw] z-50 relative'>
 				<div

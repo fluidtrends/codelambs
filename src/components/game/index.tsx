@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import Board from "../board"
 import { board } from "../board/mockData"
-import Controls from "../controls"
 import Navbar from "../navbar"
 import ProfileBoard from "../profile-board"
 import LambBoard from "../lamb-board"
@@ -11,6 +10,9 @@ import { LambBoardGameDetails, StepProps } from '../../utils/interfaces'
 import { Coordinates } from '../../utils/types'
 import { moveNextStep, willLambBeInBounderies } from '../../utils/helper'
 import { v4 as uuidv4 } from 'uuid'
+import PlayButton from '../play-button'
+import CoordinatesControls from '../controls/coordinates-controls'
+import NumberControls from '../controls/number-controls'
 
 const Game = () => {
 	const [start, setStart] = useState(false)
@@ -61,6 +63,7 @@ const Game = () => {
 	}
 
 	const handleOnClickStart = () => {
+		if (start) return;
 		setStart(prev => {
 			setRunningSteps(steps)
 			setLambDetails({
@@ -95,29 +98,26 @@ const Game = () => {
 
 	return (
 		<div className="w-full h-full p-[1vw] flex justify-around items-center gap-[2vw]">
-			<div className="h-full">
+			<div className="h-full flex flex-col justify-center items-center">
 				<StepsBoard
 					steps={[...steps, { count: number, direction: coordinate, id: '-1' }]}
 					selectedStep={selectedStep}
 					setSeletectedStep={(id: string) => setSeletectedStep(prev => prev === id ? '' : id)}
 					onDelete={(id: string) => handleClickOnDeleteStep(id)}
 				/>
+				<CoordinatesControls setCoordinate={(coordinate: Coordinates) => handleClickCoordinate(coordinate)} />
 			</div>
-			<div className='h-full flex flex-col justify-between items-start'>
+			<div className='h-full w-full flex flex-col items-center'>
 				<Navbar word={word} />
+				<PlayButton start={start} onClickStart={handleOnClickStart} />
+				{/* <div className='w-full h-full flex justify-center items-center'> */}
 				<Board board={board} position={lambDetails} />
-				<div className="flex justify-center items-center w-full my-[1vw]">
-					<Controls
-						setCoordinate={(coordinate: Coordinates) => handleClickCoordinate(coordinate)}
-						setNumber={(number: number) => handleClickNumber(number)}
-						start={start}
-						onClickStart={start ? undefined : handleOnClickStart}
-					/>
-				</div>
+				{/* </div> */}
 			</div>
-			<div className='h-full flex flex-col gap-[2vw]'>
+			<div className='h-full flex flex-col items-center justify-between'>
 				<ProfileBoard image='/images/user photo example.png' name='DaViD' />
 				<LambBoard image='/images/lamb S.png' title='25 XP LEV.1' />
+				<NumberControls setNumber={(number: number) => handleClickNumber(number)} />
 			</div>
 		</div>
 	)

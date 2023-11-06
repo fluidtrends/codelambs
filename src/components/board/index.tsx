@@ -8,9 +8,10 @@ interface BoardProps {
 }
 
 const Board = ({ board, position }: BoardProps) => {
-	const [ref, { height }] = useElementSize()
+	const [ref, { height, width }] = useElementSize()
 
-	const cellSize = height / board.length
+	// const cellSize = height / board.length
+	const cellSize = width / board[0].length
 
 	const getRows = () => board.map((row, index) => <Row
 		row={row}
@@ -22,7 +23,7 @@ const Board = ({ board, position }: BoardProps) => {
 
 	return (
 		<div
-			className='flex flex-col h-full relative my-[1vw] scale-[90%]'
+			className='flex flex-col w-full relative my-[1.5vw] scale-[90%]'
 			ref={ref}
 			style={{
 				backgroundSize: 'cover',

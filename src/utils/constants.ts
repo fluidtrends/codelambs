@@ -20,6 +20,8 @@ export const numberControlSize = 3.5
 export const numberControlMargin = - numberControlSize / 2
 export const numberTranslate = 5.5
 
+export const playButtonSize = 4
+export const squareBoardSize = 14
 
 export const coordinates: ControlProps[] = coords.map((coord) => ({
 	image: `/images/button ${coord}.png`,
