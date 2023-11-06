@@ -8,9 +8,8 @@ interface BoardProps {
 }
 
 const Board = ({ board, position }: BoardProps) => {
-	const [ref, { height, width }] = useElementSize()
+	const [ref, { width }] = useElementSize()
 
-	// const cellSize = height / board.length
 	const cellSize = width / board[0].length
 
 	const getRows = () => board.map((row, index) => <Row
