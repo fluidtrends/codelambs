@@ -5,15 +5,15 @@ const Navbar = ({ word }: any) => {
 	const buttonsLeft = [
 		{
 			image: 'button options',
-			onClick: (event: any) => { event.preventDefault() }
+			onClick: () => { }
 		},
 		{
 			image: 'button home',
-			onClick: (event: any) => { event.preventDefault() }
+			onClick: () => { }
 		},
 		{
 			image: 'button replay',
-			onClick: (event: any) => { event.preventDefault() }
+			onClick: () => { }
 		},
 	]
 

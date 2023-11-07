@@ -6,6 +6,7 @@ const NavButton = ({ image, onClick, moreClasses }: any) => {
 			className={cn('w-[2.5vw] h-[2.5vw] hover:cursor-pointer text-secondary', moreClasses ?? '')}
 			src={`/images/${image}.png`}
 			onClick={onClick}
+			onContextMenu={event => event.preventDefault()}
 		/>
 	)
 }
