@@ -31,7 +31,11 @@ const Board = ({ board, position }: BoardProps) => {
 			}}
 		>
 			<div className='absolute w-full h-full z-10 flex justify-center items-center'>
-				<img src='/images/playing field frame.png' className='w-full h-full scale-x-[114%] scale-y-[120%]' />
+				<img
+					src='/images/playing field frame.png'
+					className='w-full h-full scale-x-[114%] scale-y-[120%]'
+					onContextMenu={event => event.preventDefault()}
+				/>
 			</div>
 			{getRows()}
 		</div>

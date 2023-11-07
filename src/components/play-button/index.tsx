@@ -10,6 +10,7 @@ const PlayButton = ({ start, onClickStart }: any) => {
 				height: `${playButtonSize}vw`
 			}}
 			onClick={onClickStart}
+			onContextMenu={event => event.preventDefault()}
 		/>
 	)
 }

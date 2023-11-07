@@ -40,7 +40,11 @@ const Navbar = ({ word }: any) => {
 
 	return (
 		<div className='w-full h-[4vw] relative'>
-			<img src='/images/upper menu frame.png' className='absolute w-full h-full' />
+			<img
+				src='/images/upper menu frame.png'
+				className='absolute w-full h-full'
+				onContextMenu={event => event.preventDefault()}
+			/>
 			<div className='w-full h-full flex justify-between px-[2vw]'>
 				{getIconsSection(buttonsLeft)}
 				<Word word={word} />

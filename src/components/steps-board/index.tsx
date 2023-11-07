@@ -18,7 +18,11 @@ const StepsBoard = ({ steps, selectedStep, setSeletectedStep, onDelete }: any) =
 
 	return (
 		<div className='h-full overflow-auto relative'>
-			<img src='/images/code editor board.png' className='w-full h-full absolute z-10' />
+			<img
+				src='/images/code editor board.png'
+				className='w-full h-full absolute z-10'
+				onContextMenu={event => event.preventDefault()}
+			/>
 			<div className='w-full h-full py-[2vw] z-50 relative'>
 				<div
 					className='flex flex-col gap-[1vw] items-start justify-start overflow-auto h-full px-[2.5vw] w-[17vw]'

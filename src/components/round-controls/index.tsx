@@ -39,6 +39,7 @@ const RoundControls = ({ controlImage, controlAlternativeImage, buttons, initial
 				src={showButtons ? controlImage : (controlAlternativeImage ?? controlImage)}
 				className='w-[6vw] h-[6hw] hover:cursor-pointer'
 				onClick={() => setShowButtons(prev => !prev)}
+				onContextMenu={event => event.preventDefault()}
 			/>
 			{showButtons && getButtons()}
 		</div>

@@ -23,7 +23,11 @@ const Row = ({ rowIndex, row, cellSize, position }: RowProps) => {
 				backgroundImage: "url('/images/grass " + ((index + rowIndex) % 2 === 0 ? "dark" : "light") + ".png')"
 			}}
 		>
-			{x === index && y === rowIndex && <img src={getSheep(orientation)} className='absolute w-auto h-full z-30' />}
+			{x === index && y === rowIndex && <img
+				src={getSheep(orientation)}
+				className='absolute w-auto h-full z-30'
+				onContextMenu={event => event.preventDefault()}
+			/>}
 		</div>)
 
 	return (
