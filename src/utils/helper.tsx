@@ -1,8 +1,9 @@
 import { CSSProperties } from 'react';
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { ControlButtonProps, ControlProps, LambBoardGameDetails, StepProps } from "./interfaces"
+import { ControlButtonProps, ControlProps, LambBoardGameDetails, LetterProps, StepProps } from "./interfaces"
 import { Coordinates } from './types';
+import Letter from '../components/navbar/Letter';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
@@ -72,14 +73,33 @@ export const getNextRunningSteps = (runningSteps: StepProps[]): StepProps[] => {
 
 export const moveNextStep = (
 	lambDetails: LambBoardGameDetails,
-	setLambDetails: React.Dispatch<React.SetStateAction<LambBoardGameDetails>>,
+	setLambDetails: (prevState: LambBoardGameDetails) => void,
 	runningSteps: StepProps[],
-	setRunningSteps: React.Dispatch<React.SetStateAction<StepProps[]>>
+	setRunningSteps: (prevState: StepProps[]) => void,
+	setLetterColleted: (row: number, col: number) => void
 ): void => {
 	const nextLambDetails = getNextLambDetails(lambDetails, runningSteps)
 
 	if (runningSteps[0].direction === lambDetails.orientation) {
-		setRunningSteps(prev => JSON.parse(JSON.stringify(getNextRunningSteps(prev))))
+		setRunningSteps(getNextRunningSteps(runningSteps))
 	}
-	setLambDetails(JSON.parse(JSON.stringify(nextLambDetails)))
+	setLetterColleted(nextLambDetails.y, nextLambDetails.x)
+	setLambDetails(nextLambDetails)
+}
+
+export const getLetter = (
+	letters: LetterProps[],
+	rowIndex: number,
+	colIndex: number,
+	fontSize: number
+): any => {
+	const currLetter = letters.find(letter =>
+		letter.position.row === rowIndex &&
+		letter.position.col === colIndex &&
+		letter.collectedIndex === undefined
+	)
+	if (currLetter) {
+		return <Letter {...currLetter} fontSize={fontSize} />
+	}
+	return null
 }

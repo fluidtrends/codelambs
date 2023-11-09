@@ -1,13 +1,11 @@
 import { useElementSize } from 'usehooks-ts'
 import Row from './Row'
-import { LambBoardGameDetails } from '../../utils/interfaces'
 
 interface BoardProps {
 	board: any[][]
-	position: LambBoardGameDetails
 }
 
-const Board = ({ board, position }: BoardProps) => {
+const Board = ({ board }: BoardProps) => {
 	const [ref, { width }] = useElementSize()
 
 	const cellSize = width / board[0].length
@@ -17,7 +15,6 @@ const Board = ({ board, position }: BoardProps) => {
 		rowIndex={index}
 		key={index}
 		cellSize={cellSize}
-		position={position}
 	/>)
 
 	return (

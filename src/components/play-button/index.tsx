@@ -1,6 +1,25 @@
+import useLambDetailsStore from "../../stores/lambDetails"
+import useRunningStepsStore from "../../stores/runnningSteps"
+import useStartStore from "../../stores/start"
+import useStepsStore from "../../stores/steps"
+import useWordStore from "../../stores/word"
 import { playButtonSize } from "../../utils/constants"
 
-const PlayButton = ({ start, onClickStart }: any) => {
+const PlayButton = () => {
+	const { start, setStart } = useStartStore()
+	const { steps } = useStepsStore()
+	const { setRunningSteps } = useRunningStepsStore()
+	const { resetLambDetails } = useLambDetailsStore()
+	const { resetWord } = useWordStore()
+
+	const handleOnClickStart = () => {
+		if (start) return;
+		setRunningSteps(steps)
+		resetLambDetails()
+		resetWord()
+		setStart(!start)
+	}
+
 	return (
 		<img
 			src={start ? '/images/button play active.png' : '/images/button play.png'}
@@ -9,7 +28,7 @@ const PlayButton = ({ start, onClickStart }: any) => {
 				width: `${playButtonSize}vw`,
 				height: `${playButtonSize}vw`
 			}}
-			onClick={onClickStart}
+			onClick={() => handleOnClickStart()}
 			onContextMenu={event => event.preventDefault()}
 		/>
 	)

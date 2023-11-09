@@ -1,33 +1,37 @@
-import { getSheep } from "../../utils/helper"
-import { LambBoardGameDetails } from "../../utils/interfaces"
+import useLambDetailsStore from "../../stores/lambDetails"
+import useWordStore from "../../stores/word"
+import { getLetter, getSheep } from "../../utils/helper"
 
 interface RowProps {
 	rowIndex: number
 	row: any[][]
 	cellSize: number
-	position: LambBoardGameDetails
 }
 
-const Row = ({ rowIndex, row, cellSize, position }: RowProps) => {
-	const { x, y, orientation } = position
+const Row = ({ rowIndex, row, cellSize }: RowProps) => {
+	const { x, y, orientation } = useLambDetailsStore()
+	const { word } = useWordStore()
 
 	const getRow = () =>
-		row.map((_, index) => <div
+		row.map((_, colIndex) => <div
 			className={'aspect-square flex justify-center items-center relative'}
-			key={index}
+			key={colIndex}
 			style={{
 				width: cellSize,
 				height: cellSize,
 				backgroundSize: 'cover',
 				backgroundRepeat: 'no-repeat',
-				backgroundImage: "url('/images/grass " + ((index + rowIndex) % 2 === 0 ? "dark" : "light") + ".png')"
+				backgroundImage: "url('/images/grass " + ((colIndex + rowIndex) % 2 === 0 ? "dark" : "light") + ".png')"
 			}}
 		>
-			{x === index && y === rowIndex && <img
-				src={getSheep(orientation)}
-				className='absolute w-auto h-full z-30'
-				onContextMenu={event => event.preventDefault()}
-			/>}
+			{x === colIndex && y === rowIndex
+				? <img
+					src={getSheep(orientation)}
+					className='absolute w-auto h-full z-30'
+					onContextMenu={event => event.preventDefault()}
+				/>
+				: getLetter(word, rowIndex, colIndex, cellSize * 4 / 5)
+			}
 		</div>)
 
 	return (

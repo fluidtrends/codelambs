@@ -1,7 +1,7 @@
 import Word from "./Word"
 import NavButton from "./nav-button"
 
-const Navbar = ({ word }: any) => {
+const Navbar = () => {
 	const buttonsLeft = [
 		{
 			image: 'button options',
@@ -47,7 +47,7 @@ const Navbar = ({ word }: any) => {
 			/>
 			<div className='w-full h-full flex justify-between px-[2vw]'>
 				{getIconsSection(buttonsLeft)}
-				<Word word={word} />
+				<Word isInNavbar />
 				{getIconsSection(buttonsRight)}
 			</div>
 		</div>

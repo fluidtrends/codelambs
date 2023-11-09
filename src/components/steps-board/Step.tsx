@@ -1,9 +1,16 @@
-const Step = ({ direction, count, id, index, selected, onClick, onDelete }: any) => {
+import useSelectedStepStore from "../../stores/selectedStep"
+import useStepsStore from "../../stores/steps"
+
+const Step = ({ direction, count, id, index }: any) => {
+	const { selectedStep, setSelectedStep } = useSelectedStepStore()
+	const { deleteStepById } = useStepsStore()
+	const selected = selectedStep === id
+
 	return (
 		<div className='flex justify-start items-center gap-[1vw] w-full hover:cursor-pointer'>
 			<div
 				className='flex justify-start items-center gap-[1vw] w-full hover:cursor-pointer relative'
-				onClick={() => onClick(id)}
+				onClick={() => setSelectedStep(selected ? '' : id)}
 			>
 				{selected && <img
 					src='/images/code editor selection frame.png'
@@ -18,7 +25,7 @@ const Step = ({ direction, count, id, index, selected, onClick, onDelete }: any)
 			<div
 				className={`text-primary text-[2vw] ml-auto ${selected ? 'visible' : 'invisible'}`}
 				onClick={selected
-					? () => onDelete(id)
+					? () => deleteStepById(id)
 					: undefined
 				}
 			>
