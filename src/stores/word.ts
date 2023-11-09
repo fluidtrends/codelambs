@@ -28,7 +28,7 @@ const useWordStore = create(
 				letter.collectedIndex !== undefined ? acc : acc + 1, 0),
 			areAllLettersCollected: () => get().word.reduce((acc, letter) =>
 				letter.collectedIndex !== undefined ? acc + 1 : acc, 0) === word.length,
-			areWordsCollectedInRightOrder: () => get().word.every(({ collectedIndex }, index) => collectedIndex === index),
+			areLettersCollectedInRightOrder: () => get().word.every(({ collectedIndex }, index) => collectedIndex === index),
 			resetWord: () => set(() => ({ word })),
 		})),
 )

@@ -19,7 +19,7 @@ import useRunningStepsStore from '../../stores/runnningSteps'
 const Game = () => {
 	const { start, setStart } = useStartStore()
 	const { setNewStep } = useStepsStore()
-	const { word, setLetterCollected, areWordsCollectedInRightOrder } = useWordStore()
+	const { word, setLetterCollected } = useWordStore()
 	const { runningSteps, setRunningSteps } = useRunningStepsStore()
 	const { number, coordinate, resetInputDetails } = useInputDetailsStore()
 
