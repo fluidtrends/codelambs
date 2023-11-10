@@ -1,8 +1,8 @@
 import { CSSProperties } from 'react';
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { ControlButtonProps, ControlProps, LambBoardGameDetails, LetterProps, StepProps } from "./interfaces"
-import { Coordinates } from './types';
+import { ControlButtonProps, ControlProps, LambBoardGameDetails, LetterProps, ObstacleProps, StepProps } from "./interfaces"
+import { Coordinates, GrassBackground } from './types';
 import Letter from '../components/navbar/Letter';
 
 export function cn(...inputs: ClassValue[]) {
@@ -102,4 +102,22 @@ export const getLetter = (
 		return <Letter {...currLetter} fontSize={fontSize} />
 	}
 	return null
+}
+
+export const getCellBackground = (
+	rowIndex: number,
+	colIndex: number,
+	obstacles: ObstacleProps[]
+): string => {
+	const start = "url('/images/"
+	const end = ".png')"
+
+	const obstacle = obstacles.find(({ position: { col, row } }) => row === rowIndex && col === colIndex)
+	const middle = obstacle?.background ?? 'grass ' + ((colIndex + rowIndex) % 2 === 0 ? GrassBackground.DARK : GrassBackground.LIGHT)
+	return start + middle + end
+}
+
+export const getObstacle = (rowIndex: number, colIndex: number, obstacles: ObstacleProps[]) => {
+	const currObstacle = obstacles.find(({ position: { col, row } }) => row === rowIndex && col === colIndex)
+	return currObstacle ? '/images/' + currObstacle.image + '.png' : undefined
 }

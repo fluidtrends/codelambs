@@ -6,6 +6,14 @@ export interface Position {
 	col: number
 }
 
+export interface ObstacleProps {
+	position: Position
+	image: string
+	background?: string
+	isWalkable: boolean
+	isBlocker: boolean
+}
+
 export interface LetterProps {
 	color: string
 	text: string
