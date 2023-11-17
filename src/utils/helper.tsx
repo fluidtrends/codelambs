@@ -45,13 +45,20 @@ export const willLambBeInBounderies = (
 	}
 }
 
-export const getNextLambDetails = (
+export const shouldLambChangeDirection = (
+	lambDetails: LambBoardGameDetails,
+	runningSteps: StepProps[],
+): boolean => runningSteps[0].direction !== lambDetails.orientation
+
+export const getNextDirectionLamb = (
+	lambDetails: LambBoardGameDetails,
+	runningSteps: StepProps[],
+): LambBoardGameDetails => ({ ...lambDetails, orientation: runningSteps[0].direction })
+
+export const getNextStepLamb = (
 	lambDetails: LambBoardGameDetails,
 	runningSteps: StepProps[],
 ): LambBoardGameDetails => {
-	if (runningSteps[0].direction !== lambDetails.orientation)
-		return { ...lambDetails, orientation: runningSteps[0].direction }
-
 	switch (runningSteps[0].direction) {
 		case Coordinates.NORTH: return { ...lambDetails, y: lambDetails.y - 1 }
 		case Coordinates.SOUTH: return { ...lambDetails, y: lambDetails.y + 1 }
@@ -61,31 +68,17 @@ export const getNextLambDetails = (
 	}
 }
 
-export const getNextRunningSteps = (runningSteps: StepProps[]): StepProps[] => {
-	const { count, direction } = runningSteps[0]
-	return runningSteps[0].count > 1
-		? [
-			{ count: count - 1, direction },
-			...runningSteps.slice(1)
-		]
-		: runningSteps.slice(1)
-}
+const getStepsDecreased = (runningSteps: StepProps[]): StepProps[] => [
+	{ ...runningSteps[0], count: runningSteps[0].count - 1, direction: runningSteps[0].direction },
+	...runningSteps.slice(1)
+]
 
-export const moveNextStep = (
-	lambDetails: LambBoardGameDetails,
-	setLambDetails: (prevState: LambBoardGameDetails) => void,
-	runningSteps: StepProps[],
-	setRunningSteps: (prevState: StepProps[]) => void,
-	setLetterColleted: (row: number, col: number) => void
-): void => {
-	const nextLambDetails = getNextLambDetails(lambDetails, runningSteps)
+const getStepsWithChangedDirection = (runningSteps: StepProps[]): StepProps[] => runningSteps.slice(1)
 
-	if (runningSteps[0].direction === lambDetails.orientation) {
-		setRunningSteps(getNextRunningSteps(runningSteps))
-	}
-	setLetterColleted(nextLambDetails.y, nextLambDetails.x)
-	setLambDetails(nextLambDetails)
-}
+export const getNextRunningSteps = (runningSteps: StepProps[]): StepProps[] =>
+	runningSteps[0].count === 1
+		? getStepsWithChangedDirection(runningSteps)
+		: getStepsDecreased(runningSteps)
 
 export const getLetter = (
 	letters: LetterProps[],

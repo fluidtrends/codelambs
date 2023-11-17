@@ -1,6 +1,6 @@
 import RoundControls from '../round-controls'
 import { getControls } from '../../utils/helper'
-import { coordinateControlMargin, coordinateControlSize, coordinates, coordinatesInitialAngle } from '../../utils/constants'
+import { coodinateTranslate, coordinateControlMargin, coordinateControlSize, coordinates, coordinatesInitialAngle } from '../../utils/constants'
 import { Coordinates } from '../../utils/types'
 import useStepsStore from '../../stores/steps'
 import useSelectedStepStore from '../../stores/selectedStep'
@@ -27,7 +27,7 @@ const CoordinatesControls = () => {
 				width: `${coordinateControlSize}vw`,
 				height: `${coordinateControlSize}vw`,
 				margin: `${coordinateControlMargin}vw`
-			})}
+			}, coodinateTranslate)}
 			initialAngle={coordinatesInitialAngle}
 			style={{
 				marginTop: '4vw',

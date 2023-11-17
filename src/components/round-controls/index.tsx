@@ -33,11 +33,11 @@ const RoundControls = ({ controlImage, controlAlternativeImage, buttons, initial
 	const getButtons = () => getButtonsClasses().map((button, index) => <Button {...button} key={index} />)
 
 	return (
-		<div className='w-[10vw] h-[10vw] mx-[1vw] relative flex justify-center items-center'
+		<div className='w-[15vw] h-[15vw] mx-[1vw] relative flex justify-center items-center'
 			style={style}>
 			<img
 				src={showButtons ? controlImage : (controlAlternativeImage ?? controlImage)}
-				className='w-[6vw] h-[6hw] hover:cursor-pointer'
+				className='w-[7vw] h-[7hw] hover:cursor-pointer'
 				onClick={() => setShowButtons(prev => !prev)}
 				onContextMenu={event => event.preventDefault()}
 			/>

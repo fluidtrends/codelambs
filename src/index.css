@@ -16,6 +16,11 @@ body,
   src: url('assets/fonts/singly-list.otf') format('opentype');
 }
 
+@font-face {
+  font-family: 'turds';
+  src: url('assets/fonts/turds.ttf') format('opentype');
+}
+
 * {
   font-family: 'singly-list';
   user-select: none;
