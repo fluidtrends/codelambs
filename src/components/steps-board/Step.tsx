@@ -25,7 +25,10 @@ const Step = ({ direction, count, id, index }: any) => {
 			<div
 				className={`text-primary text-[2vw] ml-auto ${selected ? 'visible' : 'invisible'}`}
 				onClick={selected
-					? () => deleteStepById(id)
+					? () => {
+						deleteStepById(id)
+						setSelectedStep('')
+					}
 					: undefined
 				}
 			>
