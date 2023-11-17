@@ -1,10 +1,11 @@
-import React from 'react'
 
-const Star = ({ isEmpty }: any) => {
-	<img src={`images/`} alt="" />
-}
+// const Star = ({ isEmpty }: any) => {
+// 	<img src={`images/`} alt="" />
+// }
 
-const LambStars = ({ stars: number }: any) => {
+const LambStars = ({
+	// stars: number
+}: any) => {
 	return (
 		<div className='flex flex-col'>
 			<div className='flex justify-center'>
