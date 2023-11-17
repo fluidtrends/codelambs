@@ -21,7 +21,7 @@ function App() {
     isLoaded
       ? <RouterProvider router={router} />
       : <div className='w-full h-full flex justify-center items-center'>
-        <ReactLoading height='20%' width='20%' className='text-primary' type='spin' />
+        <ReactLoading height='20%' width='20%' color='#ffe581' type='spin' />
       </div>
   );
 }
