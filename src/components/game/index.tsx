@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { isDesktop } from 'react-device-detect'
 import { useOrientation } from '@uidotdev/usehooks'
 import Board from "../board"
 import { board } from "../board/mockData"
@@ -94,7 +95,7 @@ const Game = () => {
 		<div className='w-full h-full'>
 			{/* {isGamePending() || isGameStart() */}
 			{/* ?  */}
-			{phoneOrientation.angle !== 0
+			{phoneOrientation.angle !== 0 || isDesktop
 				? <div className="w-full h-full p-[1vw] flex justify-around items-center gap-[2vw]">
 					<div className="h-full flex flex-col justify-center items-center">
 						<StepsBoard />
