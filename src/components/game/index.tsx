@@ -1,124 +1,122 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { isDesktop } from 'react-device-detect'
+import { useOrientation } from '@uidotdev/usehooks'
 import Board from "../board"
 import { board } from "../board/mockData"
-import Controls from "../controls"
 import Navbar from "../navbar"
 import ProfileBoard from "../profile-board"
 import LambBoard from "../lamb-board"
 import StepsBoard from "../steps-board"
-import { word } from "./mockData"
-import { LambBoardGameDetails, StepProps } from '../../utils/interfaces'
-import { Coordinates } from '../../utils/types'
-import { moveNextStep, willLambBeInBounderies } from '../../utils/helper'
-import { v4 as uuidv4 } from 'uuid'
+import { getNextStepLamb, getNextRunningSteps, willLambBeInBounderies, shouldLambChangeDirection, getNextDirectionLamb } from '../../utils/helper'
+import PlayButton from '../play-button'
+import CoordinatesControls from '../controls/coordinates-controls'
+import NumberControls from '../controls/number-controls'
+import useLambDetailsStore from '../../stores/lambDetails'
+import useInputDetailsStore from '../../stores/inputDetails'
+import useStepsStore from '../../stores/steps'
+import useGameStatusStore from '../../stores/gameStatus'
+import useWordStore from '../../stores/word'
+import useRunningStepsStore from '../../stores/runnningSteps'
+import useObstaclesStore from '../../stores/obstacles'
+import { LambBoardGameDetails } from '../../utils/interfaces'
+import { GameStatus } from '../../utils/types'
+import ModalOrientation from '../modal-orientation/ModalOrientation'
+// import ModalWin from '../modal-win'
+// import ModalOver from '../modal-over'
 
 const Game = () => {
-	const [start, setStart] = useState(false)
+	const phoneOrientation = useOrientation();
 
-	const [number, setNumber] = useState<number | undefined>()
-	const [coordinate, setCoordinate] = useState<Coordinates | undefined>()
+	const { gameStatus, setGameStatus } = useGameStatusStore()
+	const { isLambRunningIntoObstacle } = useObstaclesStore()
+	const { setNewStep } = useStepsStore()
+	const { word, setLetterCollected, areAllLettersCollected, areLettersCollectedInRightOrder } = useWordStore()
+	const { runningSteps, setRunningSteps } = useRunningStepsStore()
+	const { number, coordinate, resetInputDetails } = useInputDetailsStore()
 
-	const [steps, setSteps] = useState<StepProps[]>([])
-	const [selectedStep, setSeletectedStep] = useState('')
-
-	const [lambDetails, setLambDetails] = useState<LambBoardGameDetails>({
-		x: Math.floor(board[0].length / 2),
-		y: Math.floor(board.length / 2),
-		orientation: Coordinates.SOUTH
-	})
-	const [runningSteps, setRunningSteps] = useState<StepProps[]>([])
-
-	const handleClickCoordinate = (newCoordinate: Coordinates) => {
-		if (selectedStep) {
-			const selectedStepIndex = steps.findIndex(({ id }) => id === selectedStep)
-			if (selectedStepIndex !== -1) {
-				setSteps(prev => {
-					prev[selectedStepIndex].direction = newCoordinate
-					return [...prev]
-				})
-			}
-		} else {
-			setCoordinate(newCoordinate)
-		}
-	}
-
-	const handleClickNumber = (newNumber: number) => {
-		if (selectedStep) {
-			const selectedStepIndex = steps.findIndex(({ id }) => id === selectedStep)
-			if (selectedStepIndex !== -1) {
-				setSteps(prev => {
-					prev[selectedStepIndex].count = newNumber
-					return [...prev]
-				})
-			}
-		} else {
-			setNumber(newNumber)
-		}
-	}
-
-	const handleClickOnDeleteStep = (deleteId: string) => {
-		setSteps(prev => prev.filter(({ id }) => id !== deleteId))
-	}
-
-	const handleOnClickStart = () => {
-		setStart(prev => {
-			setRunningSteps(steps)
-			setLambDetails({
-				x: Math.floor(board[0].length / 2),
-				y: Math.floor(board.length / 2),
-				orientation: Coordinates.SOUTH
-			})
-			return !prev
-		})
-	}
+	const { x, y, orientation, setLambDetails } = useLambDetailsStore()
+	const lambDetails = { x, y, orientation }
 
 	useEffect(() => {
 		if (number && coordinate) {
-			setSteps(prev => [...prev, { count: number, direction: coordinate, id: uuidv4() }])
-			setNumber(undefined)
-			setCoordinate(undefined)
+			setNewStep(number, coordinate)
+			resetInputDetails()
 		}
 	}, [number, coordinate])
 
+	const isGameOver = (nextLambDetails?: LambBoardGameDetails): boolean =>
+		!runningSteps.length ||
+		!word.length ||
+		!willLambBeInBounderies(lambDetails, runningSteps[0].direction, board[0].length, board.length) ||
+		areAllLettersCollected() ||
+		(nextLambDetails ? isLambRunningIntoObstacle(nextLambDetails) : false)
+
+	const handleGameOver = () => {
+		setGameStatus(GameStatus.OVER)
+	}
+
+	const handleGameWin = () => {
+		setGameStatus(GameStatus.WON)
+	}
+
 	useEffect(() => {
-		if (
-			!runningSteps.length ||
-			!willLambBeInBounderies(lambDetails, runningSteps[0].direction, board[0].length, board.length)
-		) {
-			setStart(false)
+		if (gameStatus !== GameStatus.START) return;
+
+		if (runningSteps.length && shouldLambChangeDirection(lambDetails, runningSteps)) {
+			setTimeout(() => {
+				const nextLambDetails = getNextDirectionLamb(lambDetails, runningSteps)
+				setLambDetails(nextLambDetails)
+			}, 400)
+			return;
+		} else if (areLettersCollectedInRightOrder()) {
+			handleGameWin()
+			return;
+		} else if (isGameOver()) {
+
+			handleGameOver()
 			return;
 		}
+
 		setTimeout(() => {
-			moveNextStep(lambDetails, setLambDetails, runningSteps, setRunningSteps)
-		}, 500)
+			const nextLambDetails = getNextStepLamb(lambDetails, runningSteps)
+
+			if (isGameOver(nextLambDetails)) {
+				handleGameOver()
+				return;
+			}
+
+			setRunningSteps(getNextRunningSteps(runningSteps))
+			setLetterCollected(nextLambDetails.y, nextLambDetails.x)
+			setLambDetails(nextLambDetails)
+		}, 400)
 	}, [lambDetails, runningSteps])
 
 	return (
-		<div className="w-full h-full p-[1vw] flex justify-around items-center gap-[2vw]">
-			<div className="h-full">
-				<StepsBoard
-					steps={[...steps, { count: number, direction: coordinate, id: '-1' }]}
-					selectedStep={selectedStep}
-					setSeletectedStep={(id: string) => setSeletectedStep(prev => prev === id ? '' : id)}
-					onDelete={(id: string) => handleClickOnDeleteStep(id)}
-				/>
-			</div>
-			<div className='h-full flex flex-col justify-between items-start'>
-				<Navbar word={word} />
-				<Board board={board} position={lambDetails} />
-				<div className="flex justify-center items-center w-full my-[1vw]">
-					<Controls
-						setCoordinate={(coordinate: Coordinates) => handleClickCoordinate(coordinate)}
-						setNumber={(number: number) => handleClickNumber(number)}
-						start={start}
-						onClickStart={start ? undefined : handleOnClickStart}
-					/>
+		<div className='w-full h-full'>
+			{/* {isGamePending() || isGameStart() */}
+			{/* ?  */}
+			{phoneOrientation.angle !== 0 || isDesktop
+				? <div className="w-full h-full p-[1vw] flex justify-around items-center gap-[2vw]">
+					<div className="h-full flex flex-col justify-center items-center">
+						<StepsBoard />
+						<CoordinatesControls />
+					</div>
+					<div className='h-full w-full flex flex-col items-center'>
+						<Navbar />
+						<PlayButton />
+						<Board board={board} />
+					</div>
+					<div className='h-full flex flex-col items-center justify-between'>
+						<ProfileBoard image='/images/user photo example.png' name='DaViD' />
+						<LambBoard image='/images/lamb S.png' title='25 XP LEV.1' />
+						<NumberControls />
+					</div>
 				</div>
-			</div>
-			<div className='h-full flex flex-col gap-[2vw]'>
-				<ProfileBoard image='/images/user photo example.png' name='DaViD' />
-				<LambBoard image='/images/lamb S.png' title='25 XP LEV.1' />
-			</div>
+				: <ModalOrientation />
+			}
+
+			{/* : (isGameWon() ? <ModalWin /> : <ModalOver />)} */}
+			{/* FIX ME: change to modalover if not won*/}
 		</div>
 	)
 }

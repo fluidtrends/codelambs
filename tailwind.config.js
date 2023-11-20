@@ -6,7 +6,7 @@ export default {
       colors: {
         primary: {
           DEFAULT: '#ffe581',
-          light: '#feead1',
+          light: '#ffe68f',
         },
         secondary: {
           DEFAULT: '#ad3f13'
@@ -15,6 +15,9 @@ export default {
           light: '#00b900',
           dark: '#1c6b00'
         }
+      },
+      fontFamily: {
+        'turds': ['turds']
       }
     },
   },

@@ -1,10 +1,22 @@
-import { LetterProps } from "../../utils/interfaces"
+import { LetterProps as ILetter } from "../../utils/interfaces"
 
-const Letter = ({ letter, color }: LetterProps) => {
+interface LetterProps extends ILetter {
+	isInNavbar?: boolean
+	fontSize?: number
+}
+
+const Letter = ({ text, color, isInNavbar = false, fontSize }: LetterProps) => {
+
 	return (
-		<div className={`text-[2.5vw] text-[${color}]`}>
-			{letter}
-		</div>
+		<div
+			style={{
+				color,
+				fontSize: fontSize ? `${fontSize}px` : '2.6vw',
+				WebkitTextStroke: isInNavbar ? '2px black' : undefined,
+				textShadow: isInNavbar ? '-1px 0 black, 2px 2px black, 2px 2px black, 0 -1px black' : undefined
+			}}>
+			{text}
+		</div >
 	)
 }
 

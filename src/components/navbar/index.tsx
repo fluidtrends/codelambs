@@ -1,7 +1,7 @@
 import Word from "./Word"
 import NavButton from "./nav-button"
 
-const Navbar = ({ word }: any) => {
+const Navbar = () => {
 	const buttonsLeft = [
 		{
 			image: 'button options',
@@ -13,7 +13,7 @@ const Navbar = ({ word }: any) => {
 		},
 		{
 			image: 'button replay',
-			onClick: () => { },
+			onClick: () => { }
 		},
 	]
 
@@ -40,10 +40,14 @@ const Navbar = ({ word }: any) => {
 
 	return (
 		<div className='w-full h-[4vw] relative'>
-			<img src='/images/upper menu frame.png' className='absolute w-full h-full' />
+			<img
+				src='/images/upper menu frame.png'
+				className='absolute w-full h-full'
+				onContextMenu={event => event.preventDefault()}
+			/>
 			<div className='w-full h-full flex justify-between px-[2vw]'>
 				{getIconsSection(buttonsLeft)}
-				<Word word={word} />
+				<Word isInNavbar />
 				{getIconsSection(buttonsRight)}
 			</div>
 		</div>

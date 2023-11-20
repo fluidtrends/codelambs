@@ -16,8 +16,29 @@ body,
   src: url('assets/fonts/singly-list.otf') format('opentype');
 }
 
+@font-face {
+  font-family: 'turds';
+  src: url('assets/fonts/turds.ttf') format('opentype');
+}
+
 * {
   font-family: 'singly-list';
+  user-select: none;
+}
+
+img {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+img:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 #root {

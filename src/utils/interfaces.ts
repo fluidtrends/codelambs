@@ -1,9 +1,25 @@
 import { CSSProperties } from "react"
 import { Coordinates } from "./types"
 
+export interface Position {
+	row: number
+	col: number
+}
+
+export interface ObstacleProps {
+	position: Position
+	image: string
+	background?: string
+	isWalkable: boolean
+	isBlocker: boolean
+}
+
 export interface LetterProps {
 	color: string
-	letter: string
+	text: string
+	position: Position
+	id: string
+	collectedIndex?: number
 }
 
 export interface StepProps {

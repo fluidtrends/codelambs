@@ -12,14 +12,17 @@ export const coords = [
 ]
 
 export const coordinatesInitialAngle = 180
-export const coordinateControlSize = 4
+export const coordinateControlSize = 5
 export const coordinateControlMargin = - coordinateControlSize / 2
+export const coodinateTranslate = 5.75
 
 export const numbersInitialAngle = 70
-export const numberControlSize = 3.5
+export const numberControlSize = 4.5
 export const numberControlMargin = - numberControlSize / 2
-export const numberTranslate = 5.5
+export const numberTranslate = 7
 
+export const playButtonSize = 4
+export const squareBoardSize = 14
 
 export const coordinates: ControlProps[] = coords.map((coord) => ({
 	image: `/images/button ${coord}.png`,
