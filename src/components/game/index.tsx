@@ -21,13 +21,13 @@ import useObstaclesStore from '../../stores/obstacles'
 import { LambBoardGameDetails } from '../../utils/interfaces'
 import { GameStatus } from '../../utils/types'
 import ModalOrientation from '../modal-orientation/ModalOrientation'
-// import ModalWin from '../modal-win'
+import ModalWin from '../modal-win'
 // import ModalOver from '../modal-over'
 
 const Game = () => {
 	const phoneOrientation = useOrientation();
 
-	const { gameStatus, setGameStatus } = useGameStatusStore()
+	const { gameStatus, setGameStatus, isGamePending, isGameStart, isGameWon } = useGameStatusStore()
 	const { isLambRunningIntoObstacle } = useObstaclesStore()
 	const { setNewStep } = useStepsStore()
 	const { word, setLetterCollected, areAllLettersCollected, areLettersCollectedInRightOrder } = useWordStore()
@@ -44,7 +44,7 @@ const Game = () => {
 		}
 	}, [number, coordinate])
 
-	const isGameOver = (nextLambDetails?: LambBoardGameDetails): boolean =>
+	const isGameFinished = (nextLambDetails?: LambBoardGameDetails): boolean =>
 		!runningSteps.length ||
 		!word.length ||
 		!willLambBeInBounderies(lambDetails, runningSteps[0].direction, board[0].length, board.length) ||
@@ -71,8 +71,7 @@ const Game = () => {
 		} else if (areLettersCollectedInRightOrder()) {
 			handleGameWin()
 			return;
-		} else if (isGameOver()) {
-
+		} else if (isGameFinished()) {
 			handleGameOver()
 			return;
 		}
@@ -80,7 +79,7 @@ const Game = () => {
 		setTimeout(() => {
 			const nextLambDetails = getNextStepLamb(lambDetails, runningSteps)
 
-			if (isGameOver(nextLambDetails)) {
+			if (isGameFinished(nextLambDetails)) {
 				handleGameOver()
 				return;
 			}
@@ -93,30 +92,28 @@ const Game = () => {
 
 	return (
 		<div className='w-full h-full'>
-			{/* {isGamePending() || isGameStart() */}
-			{/* ?  */}
-			{phoneOrientation.angle !== 0 || isDesktop
-				? <div className="w-full h-full p-[1vw] flex justify-around items-center gap-[2vw]">
-					<div className="h-full flex flex-col justify-center items-center">
-						<StepsBoard />
-						<CoordinatesControls />
+			{isGamePending() || isGameStart()
+				?
+				(phoneOrientation.angle !== 0 || isDesktop
+					? <div className="w-full h-full p-[1vw] flex justify-around items-center gap-[2vw]">
+						<div className="h-full flex flex-col justify-center items-center">
+							<StepsBoard />
+							<CoordinatesControls />
+						</div>
+						<div className='h-full w-full flex flex-col items-center'>
+							<Navbar />
+							<PlayButton />
+							<Board board={board} />
+						</div>
+						<div className='h-full flex flex-col items-center justify-between'>
+							<ProfileBoard image='/images/user photo example.png' name='DaViD' />
+							<LambBoard image='/images/lamb S.png' title='25 XP LEV.1' />
+							<NumberControls />
+						</div>
 					</div>
-					<div className='h-full w-full flex flex-col items-center'>
-						<Navbar />
-						<PlayButton />
-						<Board board={board} />
-					</div>
-					<div className='h-full flex flex-col items-center justify-between'>
-						<ProfileBoard image='/images/user photo example.png' name='DaViD' />
-						<LambBoard image='/images/lamb S.png' title='25 XP LEV.1' />
-						<NumberControls />
-					</div>
-				</div>
-				: <ModalOrientation />
-			}
-
-			{/* : (isGameWon() ? <ModalWin /> : <ModalOver />)} */}
-			{/* FIX ME: change to modalover if not won*/}
+					: <ModalOrientation />
+				)
+				: (isGameWon() ? <ModalWin /> : <ModalWin />)}
 		</div>
 	)
 }

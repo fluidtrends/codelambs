@@ -2,10 +2,13 @@ const Tries = ({ tries }: any) => {
 
 	return (
 		<div className='flex flex-col justify-center items-center'>
-			<div className='text-primary text-[3vw] tracking-wider'>You solved</div>
-			<div className='text-primary text-[3vw] tracking-wider'>this in</div>
-			<div className='text-primary text-[8vw] -my-[2vw]'>{tries}</div>
-			<div className='text-primary text-[3vw] tracking-wider'>TRIES</div>
+			<div className='text-primary text-[3.5vw] -mb-[1vw] tracking-wider'>You solved</div>
+			<div className='text-primary text-[3.5vw] tracking-wider'>this in</div>
+			<div className='text-primary text-[8vw] -my-[2vw] p-[1vw] relative z-40 w-full flex justify-center items-center'>
+				<img src='images/board nr tries.png' className='absolute w-3/4 h-3/4 -z-10' />
+				{tries}
+			</div>
+			<div className='text-primary text-[4vw] tracking-wider'>TRIES</div>
 		</div>
 	)
 }
