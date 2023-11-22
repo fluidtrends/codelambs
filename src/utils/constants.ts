@@ -24,6 +24,8 @@ export const numberTranslate = 7
 export const playButtonSize = 4
 export const squareBoardSize = 14
 
+export const actionButtonWonModal = 7
+
 export const coordinates: ControlProps[] = coords.map((coord) => ({
 	image: `/images/button ${coord}.png`,
 	text: coord

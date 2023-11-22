@@ -2,10 +2,10 @@ import NavButton from "../navbar/nav-button"
 
 const Actions = ({ actions }: any) => {
 	const getActions = () => (actions ?? []).map((action: any, index: number) =>
-		<NavButton {...action} key={index} moreClasses='w-[5vw] h-[5vw]' />)
+		<NavButton {...action} key={index} />)
 
 	return (
-		<div className='flex w-full justify-between items-center px-[1.5vw]'>
+		<div className='flex w-full justify-evenly items-center gap-[1.5vw] px-[2vw]'>
 			{getActions()}
 		</div>
 	)
