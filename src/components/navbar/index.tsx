@@ -1,33 +1,34 @@
+import { resetCurrentLevel } from "../../utils/helper"
 import Word from "./Word"
 import NavButton from "./nav-button"
 
 const Navbar = () => {
 	const buttonsLeft = [
 		{
-			image: 'button options',
+			image: 'button options.png',
 			onClick: () => { }
 		},
 		{
-			image: 'button home',
+			image: 'button home.png',
 			onClick: () => { }
 		},
 		{
-			image: 'button replay',
-			onClick: () => { }
+			image: 'button replay.png',
+			onClick: () => resetCurrentLevel()
 		},
 	]
 
 	const buttonsRight = [
 		{
-			image: 'button volume',
+			image: 'button volume.png',
 			onClick: () => { }
 		},
 		{
-			image: 'button volume off',
+			image: 'button volume off.png',
 			onClick: () => { }
 		},
 		{
-			image: 'button menu',
+			image: 'button menu.png',
 			onClick: () => { }
 		},
 	]

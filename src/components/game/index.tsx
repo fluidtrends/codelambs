@@ -22,7 +22,7 @@ import { LambBoardGameDetails } from '../../utils/interfaces'
 import { GameStatus } from '../../utils/types'
 import ModalOrientation from '../modal-orientation/ModalOrientation'
 import ModalWin from '../modal-win'
-// import ModalOver from '../modal-over'
+import ModalOver from '../modal-over'
 
 const Game = () => {
 	const phoneOrientation = useOrientation();
@@ -113,7 +113,8 @@ const Game = () => {
 					</div>
 					: <ModalOrientation />
 				)
-				: (isGameWon() ? <ModalWin /> : <ModalWin />)}
+				: (isGameWon() ? <ModalWin /> : <ModalOver />)}
+			{/* change last modal win in modal over */}
 		</div>
 	)
 }

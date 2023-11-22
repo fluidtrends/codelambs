@@ -5,7 +5,7 @@ const Actions = ({ actions }: any) => {
 		<NavButton {...action} key={index} />)
 
 	return (
-		<div className='flex w-full justify-evenly items-center gap-[1.5vw] px-[2vw]'>
+		<div className='relative z-30 flex w-full justify-evenly items-center gap-[1.5vw] px-[2vw]'>
 			{getActions()}
 		</div>
 	)

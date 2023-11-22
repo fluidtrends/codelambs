@@ -31,8 +31,7 @@ export const coordinates: ControlProps[] = coords.map((coord) => ({
 	text: coord
 }))
 
-export const numbers = Array
-	.from({ length: 9 }, (_, index) => ({
-		image: `/images/button ${index + 1}.png`,
-		text: index + 1
-	}))
+export const numbers = Array.from({ length: 9 }, (_, index) => ({
+	image: `/images/button ${index + 1}.png`,
+	text: index + 1
+}))

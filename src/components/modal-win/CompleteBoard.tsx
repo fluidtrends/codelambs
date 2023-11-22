@@ -1,9 +1,9 @@
 const CompleteBoard = ({ score, name }: any) => {
 	return (
 		<div
-			className='relative w-[50vw] h-[80vh] tracking-[0.2em]'
+			className='relative h-[80vh] tracking-[0.2em]'
 		>
-			<img src='images/board-bg-light.png' className='absolute w-full scale-y-[1.1] h-full ' />
+			<img src='images/board-bg-light.png' className='absolute w-full scale-y-[1.1] h-full' />
 			<div className="w-full h-full flex flex-col items-center justify-center gap-[1vw] relative z-10 px-[1vw]">
 				<div className='flex flex-col justify-center items-center w-full'>
 					<div className='font-turds text-white text-[4vw] font-bold tracking-[0.2em]'>Level</div>

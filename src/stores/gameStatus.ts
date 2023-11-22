@@ -12,7 +12,7 @@ const useGameStatusStore = create(
 			isGameOver: () => get().gameStatus === GameStatus.OVER,
 			isGamePending: () => get().gameStatus === GameStatus.PENDING,
 			isGameStart: () => get().gameStatus === GameStatus.START
-		}))
-)
+		})
+	))
 
 export default useGameStatusStore
