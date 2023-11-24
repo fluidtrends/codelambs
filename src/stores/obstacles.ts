@@ -1,11 +1,12 @@
 import { create } from "zustand";
 import { combine } from "zustand/middleware";
 import { LambBoardGameDetails, ObstacleProps } from "../utils/interfaces";
-import { obstacles } from "../components/game/mockData";
+import { allObstacles } from "../components/game/mockDataObstacles";
+import useGameIndexStore from "./gameIndex";
 
 const useObstaclesStore = create(
 	combine({
-		obstacles: obstacles as ObstacleProps[]
+		obstacles: allObstacles[useGameIndexStore.getState().index] as ObstacleProps[]
 	},
 		(set, get) => ({
 			setObstacles: (obstacles: ObstacleProps[]) => set(() => ({ obstacles })),

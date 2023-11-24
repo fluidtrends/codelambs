@@ -10,6 +10,8 @@ import useLambDetailsStore from '../stores/lambDetails';
 import useGameStatusStore from '../stores/gameStatus';
 import useStepsStore from '../stores/steps';
 import useInputDetailsStore from '../stores/inputDetails';
+import useGameIndexStore from '../stores/gameIndex';
+import usePlayCounterStore from '../stores/playCounter';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
@@ -121,11 +123,21 @@ export const getObstacle = (rowIndex: number, colIndex: number, obstacles: Obsta
 	return currObstacle ? '/images/' + currObstacle.image + '.png' : undefined
 }
 
-export const resetCurrentLevel = () => {
-	useLambDetailsStore.getState().resetLambDetails()
-	useWordStore.getState().resetWord()
-	useRunningStepsStore.getState().resetRunningSteps()
-	useGameStatusStore.getState().setGameStatus(GameStatus.PENDING)
+export const resetLevelSettings = () => {
 	useStepsStore.getState().resetSteps()
 	useInputDetailsStore.getState().resetInputDetails()
+	useRunningStepsStore.getState().resetRunningSteps()
+	useGameStatusStore.getState().setGameStatus(GameStatus.PENDING)
+	useLambDetailsStore.getState().resetLambDetails()
+}
+
+export const resetCurrentLevel = () => {
+	resetLevelSettings()
+	useWordStore.getState().resetWord()
+}
+
+export const goToNextLevel = () => {
+	resetLevelSettings()
+	usePlayCounterStore.getState().resetCounter()
+	useGameIndexStore.getState().incrementGameIndex()
 }

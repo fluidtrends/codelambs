@@ -1,8 +1,10 @@
+import useInputDetailsStore from "../../stores/inputDetails"
 import useSelectedStepStore from "../../stores/selectedStep"
 import useStepsStore from "../../stores/steps"
 
 const Step = ({ direction, count, id, index }: any) => {
 	const { selectedStep, setSelectedStep } = useSelectedStepStore()
+	const { resetInputDetails } = useInputDetailsStore()
 	const { deleteStepById } = useStepsStore()
 	const selected = selectedStep === id
 
@@ -26,7 +28,8 @@ const Step = ({ direction, count, id, index }: any) => {
 				className={`text-primary text-[2vw] ml-auto ${selected ? 'visible' : 'invisible'}`}
 				onClick={selected
 					? () => {
-						deleteStepById(id)
+						if (selectedStep !== '-1') { deleteStepById(id) }
+						else { resetInputDetails() }
 						setSelectedStep('')
 					}
 					: undefined

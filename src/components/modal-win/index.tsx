@@ -1,5 +1,5 @@
 import { actionButtonWonModal } from '../../utils/constants';
-import { resetCurrentLevel } from '../../utils/helper';
+import { goToNextLevel, resetCurrentLevel } from '../../utils/helper';
 import Actions from './Actions';
 import CompleteBoard from './CompleteBoard';
 import LambStars from './LambStars';
@@ -19,7 +19,7 @@ const ModalWin = () => {
 		},
 		{
 			image: 'board-button next.svg',
-			onClick: () => resetCurrentLevel(),
+			onClick: () => goToNextLevel(),
 			moreClasses: `w-[40%] h-[${actionButtonWonModal - 1}vw]`
 		},
 	]
@@ -41,7 +41,7 @@ const ModalWin = () => {
 				<CompleteBoard score={430} name='Thomas' />
 				<Actions actions={actions} />
 			</div>
-			<Tries tries={3} />
+			<Tries />
 		</div>
 	)
 }

@@ -22,17 +22,20 @@ import { LambBoardGameDetails } from '../../utils/interfaces'
 import { GameStatus } from '../../utils/types'
 import ModalOrientation from '../modal-orientation/ModalOrientation'
 import ModalWin from '../modal-win'
-import ModalOver from '../modal-over'
+import useGameIndexStore from '../../stores/gameIndex'
+import { allObstacles } from './mockDataObstacles'
+import { allWords } from './mockDataWords'
 
 const Game = () => {
 	const phoneOrientation = useOrientation();
 
-	const { gameStatus, setGameStatus, isGamePending, isGameStart, isGameWon } = useGameStatusStore()
-	const { isLambRunningIntoObstacle } = useObstaclesStore()
+	const { gameStatus, setGameStatus, isGamePending, isGameStart, isGameWon, isGameOver } = useGameStatusStore()
+	const { isLambRunningIntoObstacle, setObstacles } = useObstaclesStore()
 	const { setNewStep } = useStepsStore()
-	const { word, setLetterCollected, areAllLettersCollected, areLettersCollectedInRightOrder } = useWordStore()
+	const { word, setLetterCollected, areAllLettersCollected, areLettersCollectedInRightOrder, setNewWord } = useWordStore()
 	const { runningSteps, setRunningSteps } = useRunningStepsStore()
 	const { number, coordinate, resetInputDetails } = useInputDetailsStore()
+	const { index } = useGameIndexStore()
 
 	const { x, y, orientation, setLambDetails } = useLambDetailsStore()
 	const lambDetails = { x, y, orientation }
@@ -60,23 +63,20 @@ const Game = () => {
 	}
 
 	useEffect(() => {
-		if (gameStatus !== GameStatus.START) return;
-
-		if (runningSteps.length && shouldLambChangeDirection(lambDetails, runningSteps)) {
-			setTimeout(() => {
+		setTimeout(() => {
+			if (gameStatus !== GameStatus.START) return;
+			if (runningSteps.length && shouldLambChangeDirection(lambDetails, runningSteps)) {
 				const nextLambDetails = getNextDirectionLamb(lambDetails, runningSteps)
 				setLambDetails(nextLambDetails)
-			}, 400)
-			return;
-		} else if (areLettersCollectedInRightOrder()) {
-			handleGameWin()
-			return;
-		} else if (isGameFinished()) {
-			handleGameOver()
-			return;
-		}
+				return;
+			} else if (areLettersCollectedInRightOrder()) {
+				handleGameWin()
+				return;
+			} else if (isGameFinished()) {
+				handleGameOver()
+				return;
+			}
 
-		setTimeout(() => {
 			const nextLambDetails = getNextStepLamb(lambDetails, runningSteps)
 
 			if (isGameFinished(nextLambDetails)) {
@@ -90,9 +90,14 @@ const Game = () => {
 		}, 400)
 	}, [lambDetails, runningSteps])
 
+	useEffect(() => {
+		setObstacles(allObstacles[index])
+		setNewWord(allWords[index])
+	}, [index])
+
 	return (
 		<div className='w-full h-full'>
-			{isGamePending() || isGameStart()
+			{isGamePending() || isGameStart() || isGameOver()
 				?
 				(phoneOrientation.angle !== 0 || isDesktop
 					? <div className="w-full h-full p-[1vw] flex justify-around items-center gap-[2vw]">
@@ -113,8 +118,7 @@ const Game = () => {
 					</div>
 					: <ModalOrientation />
 				)
-				: (isGameWon() ? <ModalWin /> : <ModalOver />)}
-			{/* change last modal win in modal over */}
+				: (isGameWon() && <ModalWin />)}
 		</div>
 	)
 }

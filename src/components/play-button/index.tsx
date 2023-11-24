@@ -5,19 +5,24 @@ import useStepsStore from "../../stores/steps"
 import useWordStore from "../../stores/word"
 import { playButtonSize } from "../../utils/constants"
 import { GameStatus } from "../../utils/types"
+import usePlayCounterStore from "../../stores/playCounter"
+import useInputDetailsStore from "../../stores/inputDetails"
 
 const PlayButton = () => {
 	const { setGameStatus, isGameStart } = useGameStatusStore()
+	const { isIncomplete } = useInputDetailsStore()
 	const { steps } = useStepsStore()
 	const { setRunningSteps } = useRunningStepsStore()
 	const { resetLambDetails } = useLambDetailsStore()
 	const { resetWord } = useWordStore()
+	const { incrementCounter } = usePlayCounterStore()
 
 	const handleOnClickStart = () => {
-		if (isGameStart()) return;
+		if (isGameStart() || isIncomplete()) return;
 		setRunningSteps(steps)
 		resetLambDetails()
 		resetWord()
+		incrementCounter()
 		setGameStatus(GameStatus.START)
 	}
 

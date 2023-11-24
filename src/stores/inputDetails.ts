@@ -12,10 +12,12 @@ const useInputDetailsStore = create(
 		number: undefined,
 		coordinate: undefined
 	} as useInputDetailsStoreProps,
-		(set) => ({
+		(set, get) => ({
 			setNumber: (newNumber: number) => set((state) => ({ ...state, number: newNumber })),
 			setCoordinate: (newCoordinate: Coordinates) => set((state) => ({ ...state, coordinate: newCoordinate })),
-			resetInputDetails: () => set(() => ({ coordinate: undefined, number: undefined }))
+			resetInputDetails: () => set(() => ({ coordinate: undefined, number: undefined })),
+			isIncomplete: () => (get().coordinate !== undefined && get().number === undefined) ||
+				(get().coordinate === undefined && get().number !== undefined)
 		}))
 )
 
