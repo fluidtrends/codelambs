@@ -30,7 +30,8 @@ const useStepsStore = create(
 			})),
 			deleteStepById: (deleteId: string) => set(({ steps }) => {
 				return { steps: steps.filter(({ id }) => id !== deleteId) }
-			})
+			}),
+			resetSteps: () => set(() => ({ steps: [] }))
 		}))
 )
 

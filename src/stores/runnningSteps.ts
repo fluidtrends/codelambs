@@ -8,6 +8,7 @@ const useRunningStepsStore = create(
 	},
 		(set) => ({
 			setRunningSteps: (steps: StepProps[]) => set(() => ({ runningSteps: steps })),
+			resetRunningSteps: () => set(() => ({ runningSteps: [] }))
 		}))
 )
 

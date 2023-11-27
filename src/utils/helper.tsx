@@ -2,8 +2,16 @@ import { CSSProperties } from 'react';
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { ControlButtonProps, ControlProps, LambBoardGameDetails, LetterProps, ObstacleProps, StepProps } from "./interfaces"
-import { Coordinates, GrassBackground } from './types';
+import { Coordinates, GameStatus, GrassBackground } from './types';
 import Letter from '../components/navbar/Letter';
+import useRunningStepsStore from '../stores/runnningSteps';
+import useWordStore from '../stores/word';
+import useLambDetailsStore from '../stores/lambDetails';
+import useGameStatusStore from '../stores/gameStatus';
+import useStepsStore from '../stores/steps';
+import useInputDetailsStore from '../stores/inputDetails';
+import useGameIndexStore from '../stores/gameIndex';
+import usePlayCounterStore from '../stores/playCounter';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
@@ -113,4 +121,23 @@ export const getCellBackground = (
 export const getObstacle = (rowIndex: number, colIndex: number, obstacles: ObstacleProps[]) => {
 	const currObstacle = obstacles.find(({ position: { col, row } }) => row === rowIndex && col === colIndex)
 	return currObstacle ? '/images/' + currObstacle.image + '.png' : undefined
+}
+
+export const resetLevelSettings = () => {
+	useStepsStore.getState().resetSteps()
+	useInputDetailsStore.getState().resetInputDetails()
+	useRunningStepsStore.getState().resetRunningSteps()
+	useGameStatusStore.getState().setGameStatus(GameStatus.PENDING)
+	useLambDetailsStore.getState().resetLambDetails()
+}
+
+export const resetCurrentLevel = () => {
+	resetLevelSettings()
+	useWordStore.getState().resetWord()
+}
+
+export const goToNextLevel = () => {
+	resetLevelSettings()
+	usePlayCounterStore.getState().resetCounter()
+	useGameIndexStore.getState().incrementGameIndex()
 }

@@ -1,11 +1,12 @@
 import { create } from "zustand";
 import { combine } from "zustand/middleware";
 import { LetterProps } from "../utils/interfaces";
-import { word } from "../components/game/mockData";
+import { allWords } from "../components/game/mockDataWords";
+import useGameIndexStore from "./gameIndex";
 
 const useWordStore = create(
 	combine({
-		word: word as LetterProps[]
+		word: allWords[useGameIndexStore.getState().index] as LetterProps[]
 	},
 		(set, get) => ({
 			setLetterCollected: (row: number, col: number) => set(({ word }) => {
@@ -27,9 +28,10 @@ const useWordStore = create(
 			uncollectedLettersCount: () => get().word.reduce((acc, letter) =>
 				letter.collectedIndex !== undefined ? acc : acc + 1, 0),
 			areAllLettersCollected: () => get().word.reduce((acc, letter) =>
-				letter.collectedIndex !== undefined ? acc + 1 : acc, 0) === word.length,
+				letter.collectedIndex !== undefined ? acc + 1 : acc, 0) === allWords[useGameIndexStore.getState().index].length,
 			areLettersCollectedInRightOrder: () => get().word.every(({ collectedIndex }, index) => collectedIndex === index),
-			resetWord: () => set(() => ({ word })),
+			resetWord: () => set(() => ({ word: allWords[useGameIndexStore.getState().index] })),
+			setNewWord: (newWord: LetterProps[]) => set(() => ({ word: newWord }))
 		})),
 )
 
