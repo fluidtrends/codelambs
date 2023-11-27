@@ -21,8 +21,10 @@ export const numberControlSize = 4.5
 export const numberControlMargin = - numberControlSize / 2
 export const numberTranslate = 7
 
-export const playButtonSize = 4
+export const playButtonSize = 6
 export const squareBoardSize = 14
+
+export const navActionSize = 3
 
 export const actionButtonWonModal = 7
 

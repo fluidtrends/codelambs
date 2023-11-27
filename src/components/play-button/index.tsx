@@ -29,7 +29,7 @@ const PlayButton = () => {
 	return (
 		<img
 			src={isGameStart() ? '/images/button play active.png' : '/images/button play.png'}
-			className='-mt-[1.3vw] hover:cursor-pointer z-30'
+			className='hover:cursor-pointer'
 			style={{
 				width: `${playButtonSize}vw`,
 				height: `${playButtonSize}vw`

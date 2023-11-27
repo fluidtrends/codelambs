@@ -107,8 +107,8 @@ const Game = () => {
 						</div>
 						<div className='h-full w-full flex flex-col items-center'>
 							<Navbar />
-							<PlayButton />
 							<Board board={board} />
+							<PlayButton />
 						</div>
 						<div className='h-full flex flex-col items-center justify-between'>
 							<ProfileBoard image='/images/user photo example.png' name='DaViD' />
