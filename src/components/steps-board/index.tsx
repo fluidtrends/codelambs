@@ -1,14 +1,14 @@
-import { useEffect, useRef } from "react"
 import Step from "./Step"
 import useStepsStore from "../../stores/steps";
 import useInputDetailsStore from "../../stores/inputDetails";
+import useScrollToElement from "../../hooks/useScrollToElement";
 
 const StepsBoard = () => {
 
 	const { steps } = useStepsStore()
 	const { number, coordinate } = useInputDetailsStore()
 
-	const ref = useRef()
+	const ref = useScrollToElement()
 
 	const getSteps = () => [...steps, { count: number, direction: coordinate, id: '-1' }]
 		.map((step: any, index: number) => <Step
@@ -17,13 +17,10 @@ const StepsBoard = () => {
 			{...step}
 		/>)
 
-	useEffect(() => {
-		(ref as any)?.current?.scrollIntoView({ behavior: 'smooth' })
-	}, [steps.length])
-
 	return (
 		<div className='h-full overflow-auto relative'>
 			<img
+				rel='preload'
 				src='/images/code editor board.png'
 				className='w-full h-full absolute z-10'
 				onContextMenu={event => event.preventDefault()}

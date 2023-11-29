@@ -36,6 +36,7 @@ const RoundControls = ({ controlImage, controlAlternativeImage, buttons, initial
 		<div className='w-[15vw] h-[15vw] mx-[1vw] relative flex justify-center items-center'
 			style={style}>
 			<img
+				rel='preload'
 				src={showButtons ? controlImage : (controlAlternativeImage ?? controlImage)}
 				className='w-[7vw] h-[7hw] hover:cursor-pointer'
 				onClick={() => setShowButtons(prev => !prev)}

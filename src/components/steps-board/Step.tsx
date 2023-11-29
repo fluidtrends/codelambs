@@ -15,6 +15,7 @@ const Step = ({ direction, count, id, index }: any) => {
 				onClick={() => setSelectedStep(selected ? '' : id)}
 			>
 				{selected && <img
+					rel='preload'
 					src='/images/code editor selection frame.png'
 					className='absolute left-0 w-full h-full'
 					onContextMenu={event => event.preventDefault()}

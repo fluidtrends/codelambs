@@ -34,6 +34,7 @@ const Row = ({ rowIndex, row, cellSize }: RowProps) => {
 							? getSheep(orientation)
 							: getObstacle(rowIndex, colIndex, obstacles)
 					}
+					rel='preload'
 					className='absolute w-auto h-full'
 					style={{
 						zIndex: x === colIndex && y === rowIndex ? 10 : 0

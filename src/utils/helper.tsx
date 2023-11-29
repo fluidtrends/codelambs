@@ -141,3 +141,10 @@ export const goToNextLevel = () => {
 	usePlayCounterStore.getState().resetCounter()
 	useGameIndexStore.getState().incrementGameIndex()
 }
+
+export const loadAllImages = (images: string[]): void => {
+	images.forEach(image => {
+		const img = new Image();
+		img.src = `images/${image}`;
+	})
+}

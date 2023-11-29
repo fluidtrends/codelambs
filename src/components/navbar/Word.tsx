@@ -11,6 +11,7 @@ const Word = ({ isInNavbar }: WordProps) => {
 	return (
 		<div className='w-1/2 relative mx-[2vw]'>
 			<img
+				rel='preload'
 				src='/images/upper frame for the word.png'
 				className='absolute w-full h-[115%] -top-[0.4vw]'
 				onContextMenu={event => event.preventDefault()}
