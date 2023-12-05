@@ -11,7 +11,7 @@ const ModalOver = () => {
 			moreClasses: `w-[${actionButtonWonModal}vw] h-[${actionButtonWonModal}vw]`
 		},
 		{
-			image: 'board-button retry.svg',
+			image: 'button-board retry.svg',
 			onClick: () => resetCurrentLevel(),
 			moreClasses: `w-[40%] h-[${actionButtonWonModal - 1}vw]`
 		},
