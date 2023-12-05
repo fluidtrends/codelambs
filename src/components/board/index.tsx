@@ -28,7 +28,7 @@ const Board = ({ board }: BoardProps) => {
 		>
 			<div className='absolute w-full h-full z-10 flex justify-center items-center'>
 				<img
-					rel='preload'
+
 					src='/images/playing field frame.png'
 					className='relative w-full h-full z-50 scale-x-[114%] scale-y-[120%]'
 					onContextMenu={event => event.preventDefault()}

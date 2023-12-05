@@ -42,7 +42,7 @@ const Navbar = () => {
 	return (
 		<div className='w-full h-[4vw] relative'>
 			<img
-				rel='preload'
+
 				src='/images/upper menu frame.png'
 				className='absolute w-full h-full'
 				onContextMenu={event => event.preventDefault()}

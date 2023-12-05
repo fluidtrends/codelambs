@@ -10,7 +10,7 @@ const LambBoard = ({ image, title }: any) => {
 			}}
 		>
 			<img
-				rel='preload'
+
 				src='/images/lamb board.png'
 				className='absolute w-full h-full'
 				onContextMenu={event => event.preventDefault()}

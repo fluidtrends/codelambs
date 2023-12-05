@@ -20,7 +20,7 @@ const StepsBoard = () => {
 	return (
 		<div className='h-full overflow-auto relative'>
 			<img
-				rel='preload'
+
 				src='/images/code editor board.png'
 				className='w-full h-full absolute z-10'
 				onContextMenu={event => event.preventDefault()}

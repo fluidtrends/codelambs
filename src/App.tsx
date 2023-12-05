@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './config/router';
 import ReactLoading from 'react-loading'
-import { loadAllImages } from './utils/helper';
+import { loadAllImages, loadImages } from './utils/helper';
 import { images } from './utils/constants';
 
 function App() {
@@ -11,6 +11,11 @@ function App() {
   useEffect(() => {
     loadAllImages(images)
     setIsLoaded(true)
+    // (async () => {
+    //   try { await loadImages(images) }
+    //   catch { }
+    //   finally { setIsLoaded(true) }
+    // })()
   }, []);
 
   return (

@@ -35,7 +35,7 @@ const ModalWin = () => {
 				backgroundImage: "url('images/background-dark.png')"
 			}}
 		>
-			<img rel='preload' src='images/rays of light.png' className='absolute w-full max-h-full opacity-30' />
+			<img src='images/rays of light.png' className='absolute w-full max-h-full opacity-30' />
 			<LambStars stars={stars} />
 			<div className='flex flex-col justify-center h-full w-[50vw]'>
 				<CompleteBoard score={430} name='Thomas' />
