@@ -11,11 +11,6 @@ function App() {
   useEffect(() => {
     loadAllImages(images)
     setIsLoaded(true)
-    // (async () => {
-    //   try { await loadImages(images) }
-    //   catch { }
-    //   finally { setIsLoaded(true) }
-    // })()
   }, []);
 
   return (

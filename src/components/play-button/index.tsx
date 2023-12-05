@@ -28,7 +28,6 @@ const PlayButton = () => {
 
 	return (
 		<img
-
 			src={isGameStart() ? '/images/button play active.png' : '/images/button play.png'}
 			className='hover:cursor-pointer'
 			style={{

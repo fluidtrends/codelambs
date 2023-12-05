@@ -10,7 +10,6 @@ const ProfileBoard = ({ image, name }: any) => {
 			}}
 		>
 			<img
-
 				src='/images/lamb board.png'
 				className='absolute w-full h-full'
 				onContextMenu={event => event.preventDefault()}
