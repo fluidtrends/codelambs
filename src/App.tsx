@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './config/router';
 import ReactLoading from 'react-loading'
-import { loadAllImages, loadImages } from './utils/helper';
+import { loadAllImages } from './utils/helper';
 import { images } from './utils/constants';
 
 function App() {
