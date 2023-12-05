@@ -18,7 +18,7 @@ const ModalWin = () => {
 			moreClasses: `w-[${actionButtonWonModal}vw] h-[${actionButtonWonModal}vw]`
 		},
 		{
-			image: 'board-button next.svg',
+			image: 'button-board next.svg',
 			onClick: () => goToNextLevel(),
 			moreClasses: `w-[40%] h-[${actionButtonWonModal - 1}vw]`
 		},
