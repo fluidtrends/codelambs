@@ -10,6 +10,7 @@ body,
   padding: 0;
   margin: 0;
   overscroll-behavior: none;
+  touch-action: pan-x pan-y;
 }
 
 @font-face {

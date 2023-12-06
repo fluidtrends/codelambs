@@ -12,7 +12,7 @@ function App() {
     loadAllImages(images)
     setTimeout(() => {
       setIsLoaded(true)
-    }, 4000)
+    }, 3000)
   }, []);
 
   return (
