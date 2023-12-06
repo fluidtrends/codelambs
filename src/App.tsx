@@ -10,7 +10,9 @@ function App() {
 
   useEffect(() => {
     loadAllImages(images)
-    setIsLoaded(true)
+    setTimeout(() => {
+      setIsLoaded(true)
+    }, 2000)
   }, []);
 
   return (
