@@ -1,9 +1,9 @@
 import { actionButtonWonModal } from '../../utils/constants';
 import { goToNextLevel, resetCurrentLevel } from '../../utils/helper';
 import Actions from './Actions';
-import CompleteBoard from './CompleteBoard';
-import LambStars from './LambStars';
-import Tries from './Tries';
+import CompleteBoard from './CompleteBoard'
+import LambStars from './LambStars'
+import Tries from './Tries'
 
 const ModalWin = () => {
 	const actions = [
@@ -18,7 +18,7 @@ const ModalWin = () => {
 			moreClasses: `w-[${actionButtonWonModal}vw] h-[${actionButtonWonModal}vw]`
 		},
 		{
-			image: 'board-button next.svg',
+			image: 'button-board next.svg',
 			onClick: () => goToNextLevel(),
 			moreClasses: `w-[40%] h-[${actionButtonWonModal - 1}vw]`
 		},

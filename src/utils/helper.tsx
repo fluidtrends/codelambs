@@ -141,3 +141,24 @@ export const goToNextLevel = () => {
 	usePlayCounterStore.getState().resetCounter()
 	useGameIndexStore.getState().incrementGameIndex()
 }
+
+export const loadAllImages = (images: string[]): void => {
+	images.forEach(image => {
+		const img = new Image();
+		img.src = `images/${image}`;
+	})
+}
+
+const loadImage = (image: string) =>
+	new Promise((resolve, reject) => {
+		const img = new Image()
+		img.onload = () => resolve(img)
+		img.onerror = () => reject(new Error(`Image failed to load: ${image}`))
+		img.src = 'images/' + image
+	})
+
+export const loadImages = (images: string[]) => {
+	const promises = images.map(image => loadImage(image))
+	return Promise.allSettled(promises)
+}
+

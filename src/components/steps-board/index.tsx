@@ -1,15 +1,14 @@
-import { useRef } from "react"
 import Step from "./Step"
-import { useDraggable } from "react-use-draggable-scroll"
 import useStepsStore from "../../stores/steps";
 import useInputDetailsStore from "../../stores/inputDetails";
+import useScrollToElement from "../../hooks/useScrollToElement";
 
 const StepsBoard = () => {
 
-	const ref = useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
-	const { events } = useDraggable(ref)
 	const { steps } = useStepsStore()
 	const { number, coordinate } = useInputDetailsStore()
+
+	const ref = useScrollToElement()
 
 	const getSteps = () => [...steps, { count: number, direction: coordinate, id: '-1' }]
 		.map((step: any, index: number) => <Step
@@ -26,12 +25,9 @@ const StepsBoard = () => {
 				onContextMenu={event => event.preventDefault()}
 			/>
 			<div className='w-full h-full py-[2vw] z-50 relative'>
-				<div
-					className='flex flex-col gap-[1vw] items-start justify-start overflow-auto h-full px-[2.5vw] w-[17vw]'
-					{...events}
-					ref={ref}
-				>
+				<div className='flex flex-col gap-[1vw] items-start justify-start overflow-auto h-full px-[2.5vw] w-[17vw]'>
 					{getSteps()}
+					<div ref={ref as any} className='h-0' />
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,5 @@
 import { useElementSize } from 'usehooks-ts'
 import Row from './Row'
-
 interface BoardProps {
 	board: any[][]
 }
