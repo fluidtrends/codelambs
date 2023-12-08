@@ -6,7 +6,7 @@ import useGameIndexStore from "./gameIndex";
 
 const useWordStore = create(
 	combine({
-		word: allWords[useGameIndexStore.getState().index] as LetterProps[]
+		word: [] as LetterProps[]
 	},
 		(set, get) => ({
 			setLetterCollected: (row: number, col: number) => set(({ word }) => {

@@ -162,3 +162,5 @@ export const loadImages = (images: string[]) => {
 	return Promise.allSettled(promises)
 }
 
+export const isLambRunningIntoObstacle = ({ x, y }: LambBoardGameDetails, obstacles: ObstacleProps[]): boolean =>
+	!!obstacles.find(({ isBlocker, position }) => isBlocker && position.row === y && position.col === x)

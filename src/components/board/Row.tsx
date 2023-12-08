@@ -1,7 +1,9 @@
+import { GetObstacles } from "../../hooks/query"
+import useGameIndexStore from "../../stores/gameIndex"
 import useLambDetailsStore from "../../stores/lambDetails"
-import useObstaclesStore from "../../stores/obstacles"
 import useWordStore from "../../stores/word"
 import { getCellBackground, getLetter, getObstacle, getSheep } from "../../utils/helper"
+import ReactLoading from 'react-loading'
 
 interface RowProps {
 	rowIndex: number
@@ -12,7 +14,14 @@ interface RowProps {
 const Row = ({ rowIndex, row, cellSize }: RowProps) => {
 	const { x, y, orientation } = useLambDetailsStore()
 	const { word } = useWordStore()
-	const { obstacles } = useObstaclesStore()
+
+	const { index } = useGameIndexStore()
+	const { data: obstacles } = GetObstacles(index)
+
+	if (!obstacles) return
+	<div className='w-full h-full flex justify-center items-center'>
+		<ReactLoading height='20%' width='20%' color='#ffe581' type='spin' className='mb-[10%]' />
+	</div>
 
 	const getRow = () =>
 		row.map((_, colIndex) => <div
