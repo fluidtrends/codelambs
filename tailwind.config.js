@@ -7,9 +7,11 @@ export default {
         primary: {
           DEFAULT: '#ffe581',
           light: '#ffe68f',
+          dark: '#f5c922'
         },
         secondary: {
-          DEFAULT: '#ad3f13'
+          DEFAULT: '#ad3f13',
+
         },
         green: {
           light: '#00b900',
