@@ -7,7 +7,7 @@ import Navbar from "../navbar"
 import ProfileBoard from "../profile-board"
 import LambBoard from "../lamb-board"
 import StepsBoard from "../steps-board"
-import { getNextStepLamb, getNextRunningSteps, willLambBeInBounderies, shouldLambChangeDirection, getNextDirectionLamb } from '../../utils/helper'
+import { getNextStepLamb, getNextRunningSteps, willLambBeInBounderies, shouldLambChangeDirection, getNextDirectionLamb, isLambRunningIntoObstacle } from '../../utils/helper'
 import PlayButton from '../play-button'
 import CoordinatesControls from '../controls/coordinates-controls'
 import NumberControls from '../controls/number-controls'
@@ -17,28 +17,34 @@ import useStepsStore from '../../stores/steps'
 import useGameStatusStore from '../../stores/gameStatus'
 import useWordStore from '../../stores/word'
 import useRunningStepsStore from '../../stores/runnningSteps'
-import useObstaclesStore from '../../stores/obstacles'
 import { LambBoardGameDetails } from '../../utils/interfaces'
 import { GameStatus } from '../../utils/types'
 import ModalOrientation from '../modal-orientation/ModalOrientation'
 import ModalWin from '../modal-win'
 import useGameIndexStore from '../../stores/gameIndex'
-import { allObstacles } from './mockDataObstacles'
-import { allWords } from './mockDataWords'
+import { GetObstacles, GetWord } from '../../hooks/query'
 
 const Game = () => {
 	const phoneOrientation = useOrientation();
 
 	const { gameStatus, setGameStatus, isGamePending, isGameStart, isGameWon, isGameOver } = useGameStatusStore()
-	const { isLambRunningIntoObstacle, setObstacles } = useObstaclesStore()
 	const { setNewStep } = useStepsStore()
-	const { word, setLetterCollected, areAllLettersCollected, areLettersCollectedInRightOrder, setNewWord } = useWordStore()
+	const { word, setNewWord, setLetterCollected, areAllLettersCollected, areLettersCollectedInRightOrder } = useWordStore()
 	const { runningSteps, setRunningSteps } = useRunningStepsStore()
 	const { number, coordinate, resetInputDetails } = useInputDetailsStore()
 	const { index } = useGameIndexStore()
 
+	const { data: obstacles } = GetObstacles(index)
+	const { data: fetchedWord, isSuccess: isSuccessWord } = GetWord(index)
+
 	const { x, y, orientation, setLambDetails } = useLambDetailsStore()
 	const lambDetails = { x, y, orientation }
+
+	useEffect(() => {
+		if (isSuccessWord) {
+			setNewWord(fetchedWord)
+		}
+	}, [index, isSuccessWord])
 
 	useEffect(() => {
 		if (number && coordinate) {
@@ -52,7 +58,7 @@ const Game = () => {
 		!word.length ||
 		!willLambBeInBounderies(lambDetails, runningSteps[0].direction, board[0].length, board.length) ||
 		areAllLettersCollected() ||
-		(nextLambDetails ? isLambRunningIntoObstacle(nextLambDetails) : false)
+		(nextLambDetails ? isLambRunningIntoObstacle(nextLambDetails, obstacles) : false)
 
 	const handleGameOver = () => {
 		setGameStatus(GameStatus.OVER)
@@ -89,11 +95,6 @@ const Game = () => {
 			setLambDetails(nextLambDetails)
 		}, 400)
 	}, [lambDetails, runningSteps])
-
-	useEffect(() => {
-		setObstacles(allObstacles[index])
-		setNewWord(allWords[index])
-	}, [index])
 
 	return (
 		<div className='w-full h-full'>
