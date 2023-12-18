@@ -1,11 +1,24 @@
 [
+	[],
+	[],
 	[
 		{
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 3,
-				"row": 2
+				"row": 2,
+				"col": 1
+			},
+			"image": "stone 1"
+		}
+	],
+	[
+		{
+			"isBlocker": true,
+			"isWalkable": false,
+			"position": {
+				"row": 2,
+				"col": 3
 			},
 			"image": "stone 1"
 		},
@@ -13,8 +26,8 @@
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 10,
-				"row": 3
+				"row": 3,
+				"col": 10
 			},
 			"image": "stone 2"
 		},
@@ -22,8 +35,8 @@
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 7,
-				"row": 0
+				"row": 0,
+				"col": 7
 			},
 			"image": "water"
 		},
@@ -31,8 +44,8 @@
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 7,
-				"row": 5
+				"row": 5,
+				"col": 7
 			},
 			"image": "water"
 		},
@@ -40,8 +53,8 @@
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 1,
-				"row": 5
+				"row": 5,
+				"col": 1
 			},
 			"image": "ground"
 		},
@@ -49,8 +62,8 @@
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 6,
-				"row": 2
+				"row": 2,
+				"col": 6
 			},
 			"image": "ground"
 		}
@@ -60,8 +73,8 @@
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 3,
-				"row": 4
+				"row": 4,
+				"col": 3
 			},
 			"image": "stone 1"
 		},
@@ -69,8 +82,8 @@
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 8,
-				"row": 1
+				"row": 1,
+				"col": 8
 			},
 			"image": "stone 2"
 		},
@@ -78,8 +91,8 @@
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 3,
-				"row": 2
+				"row": 2,
+				"col": 3
 			},
 			"image": "water"
 		},
@@ -87,8 +100,8 @@
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 5,
-				"row": 5
+				"row": 5,
+				"col": 5
 			},
 			"image": "water"
 		},
@@ -96,8 +109,8 @@
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 9,
-				"row": 4
+				"row": 4,
+				"col": 9
 			},
 			"image": "ground"
 		},
@@ -105,8 +118,8 @@
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 6,
-				"row": 2
+				"row": 2,
+				"col": 6
 			},
 			"image": "ground"
 		}
@@ -116,8 +129,8 @@
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 6,
-				"row": 1
+				"row": 1,
+				"col": 6
 			},
 			"image": "stone 1"
 		},
@@ -125,8 +138,8 @@
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 2,
-				"row": 2
+				"row": 2,
+				"col": 2
 			},
 			"image": "stone 2"
 		},
@@ -134,8 +147,8 @@
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 2,
-				"row": 4
+				"row": 4,
+				"col": 2
 			},
 			"image": "water"
 		},
@@ -143,8 +156,8 @@
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 8,
-				"row": 2
+				"row": 2,
+				"col": 8
 			},
 			"image": "water"
 		},
@@ -152,8 +165,8 @@
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 4,
-				"row": 0
+				"row": 0,
+				"col": 4
 			},
 			"image": "ground"
 		},
@@ -161,8 +174,8 @@
 			"isBlocker": true,
 			"isWalkable": false,
 			"position": {
-				"col": 5,
-				"row": 5
+				"row": 5,
+				"col": 5
 			},
 			"image": "ground"
 		}

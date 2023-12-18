@@ -1,13 +1,15 @@
 import { useElementSize } from 'usehooks-ts'
 import Row from './Row'
+
 interface BoardProps {
 	board: any[][]
+	maxWidth: number
 }
 
-const Board = ({ board }: BoardProps) => {
-	const [ref, { width }] = useElementSize()
+const Board = ({ board, maxWidth }: BoardProps) => {
+	const [ref, { height }] = useElementSize()
 
-	const cellSize = width / board[0].length
+	const cellSize = maxWidth / board[0].length * board.length > height ? height / board.length : maxWidth / board[0].length
 
 	const getRows = () => board.map((row, index) => <Row
 		row={row}
@@ -18,9 +20,10 @@ const Board = ({ board }: BoardProps) => {
 
 	return (
 		<div
-			className='flex flex-col w-full relative my-[1.5vw] scale-[90%]'
+			className='flex flex-col h-full max-h-[65vh] relative my-[1.5vw] scale-[90%]'
 			ref={ref}
 			style={{
+				width: cellSize * board[0].length,
 				backgroundSize: 'cover',
 				backgroundRepeat: 'no-repeat',
 				backgroundImage: "url('images/layer under the grass squares.png')"

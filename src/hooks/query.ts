@@ -17,3 +17,21 @@ export const GetWord = (index: number) =>
 			return (await result.json())[index]
 		}
 	})
+
+export const GetBoardDimensions = (index: number) =>
+	useQuery({
+		queryKey: ['board-dimensions', index],
+		queryFn: async () => {
+			const result = await fetch(`/mock/boardDimensions.json`)
+			return (await result.json())[index]
+		}
+	})
+
+export const GetLambPosition = (index: number) =>
+	useQuery({
+		queryKey: ['lamb-position', index],
+		queryFn: async () => {
+			const result = await fetch(`/mock/lambPosition.json`)
+			return (await result.json())[index]
+		}
+	})

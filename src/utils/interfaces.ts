@@ -41,6 +41,8 @@ export interface ControlButtonProps {
 }
 
 export interface LambBoardGameDetails {
+	initialX?: number
+	initialY?: number
 	x: number
 	y: number
 	orientation: Coordinates
