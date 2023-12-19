@@ -164,3 +164,5 @@ export const loadImages = (images: string[]) => {
 
 export const isLambRunningIntoObstacle = ({ x, y }: LambBoardGameDetails, obstacles: ObstacleProps[]): boolean =>
 	!!obstacles.find(({ isBlocker, position }) => isBlocker && position.row === y && position.col === x)
+
+export const getBoard = (rows: number, cols: number) => Array(rows).fill(0).map(_ => Array(cols).fill(0))

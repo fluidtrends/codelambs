@@ -5,13 +5,27 @@ import { combine } from "zustand/middleware";
 
 const useLambDetailsStore = create(
 	combine({
-		x: 6,
-		y: 3,
+		initialX: -1,
+		initialY: -1,
+		x: -1,
+		y: -1,
 		orientation: Coordinates.SOUTH,
 	} as LambBoardGameDetails,
-		(set) => ({
-			resetLambDetails: () => set(() => ({ x: 6, y: 3, orientation: Coordinates.SOUTH })),
-			setLambDetails: (newLambDetails: LambBoardGameDetails) => set({ ...newLambDetails })
+		(set, get) => ({
+			setLambInitialDetails: (initialX: number, initialY: number) => set(() => ({
+				x: initialX,
+				y: initialY,
+				initialX,
+				initialY,
+				orientation: Coordinates.SOUTH
+			})),
+			resetLambDetails: () => set(() => ({
+				...get(),
+				x: get().initialX,
+				y: get().initialY,
+				orientation: Coordinates.SOUTH
+			})),
+			setLambDetails: (newLambDetails: LambBoardGameDetails) => set({ ...get(), ...newLambDetails })
 		}))
 )
 

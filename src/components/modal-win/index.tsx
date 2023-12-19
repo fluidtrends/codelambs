@@ -6,6 +6,7 @@ import LambStars from './LambStars'
 import Tries from './Tries'
 
 const ModalWin = () => {
+
 	const actions = [
 		{
 			image: 'button-board home.png',

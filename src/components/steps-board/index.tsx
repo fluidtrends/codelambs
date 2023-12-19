@@ -2,11 +2,13 @@ import Step from "./Step"
 import useStepsStore from "../../stores/steps";
 import useInputDetailsStore from "../../stores/inputDetails";
 import useScrollToElement from "../../hooks/useScrollToElement";
+import useRunningStepsStore from "../../stores/runnningSteps";
 
 const StepsBoard = () => {
 
 	const { steps } = useStepsStore()
 	const { number, coordinate } = useInputDetailsStore()
+	const { runningSteps } = useRunningStepsStore()
 
 	const ref = useScrollToElement()
 
@@ -27,7 +29,7 @@ const StepsBoard = () => {
 			<div className='w-full h-full py-[2vw] z-50 relative'>
 				<div className='flex flex-col gap-[1vw] items-start justify-start overflow-auto h-full px-[2.5vw] w-[17vw]'>
 					{getSteps()}
-					<div ref={ref as any} className='h-0' />
+					{!runningSteps.length && <div ref={!runningSteps.length ? ref as any : undefined} className='h-0' />}
 				</div>
 			</div>
 		</div>

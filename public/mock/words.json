@@ -5,6 +5,93 @@
 			"color": "#5ed1ff",
 			"text": "C",
 			"position": {
+				"row": 1,
+				"col": 1
+			}
+		},
+		{
+			"id": "2",
+			"color": "#ff5ef4",
+			"text": "A",
+			"position": {
+				"row": 1,
+				"col": 2
+			}
+		},
+		{
+			"id": "3",
+			"color": "#fffa5e",
+			"text": "T",
+			"position": {
+				"row": 1,
+				"col": 3
+			}
+		}
+	],
+	[
+		{
+			"id": "1",
+			"color": "#5ed1ff",
+			"text": "D",
+			"position": {
+				"row": 1,
+				"col": 1
+			}
+		},
+		{
+			"id": "2",
+			"color": "#ff5ef4",
+			"text": "A",
+			"position": {
+				"row": 1,
+				"col": 2
+			}
+		},
+		{
+			"id": "3",
+			"color": "#fffa5e",
+			"text": "D",
+			"position": {
+				"row": 1,
+				"col": 3
+			}
+		}
+	],
+	[
+		{
+			"id": "1",
+			"color": "#5ed1ff",
+			"text": "M",
+			"position": {
+				"row": 2,
+				"col": 2
+			}
+		},
+		{
+			"id": "2",
+			"color": "#fffa5e",
+			"text": "O",
+			"position": {
+				"row": 2,
+				"col": 3
+			}
+		},
+		{
+			"id": "3",
+			"color": "#ff5ef4",
+			"text": "M",
+			"position": {
+				"row": 2,
+				"col": 4
+			}
+		}
+	],
+	[
+		{
+			"id": "1",
+			"color": "#5ed1ff",
+			"text": "P",
+			"position": {
 				"row": 3,
 				"col": 7
 			}
@@ -12,7 +99,7 @@
 		{
 			"id": "2",
 			"color": "#ff5ef4",
-			"text": "A",
+			"text": "E",
 			"position": {
 				"row": 3,
 				"col": 8
@@ -21,7 +108,7 @@
 		{
 			"id": "3",
 			"color": "#fffa5e",
-			"text": "T",
+			"text": "N",
 			"position": {
 				"row": 3,
 				"col": 9
