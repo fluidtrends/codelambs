@@ -37,7 +37,8 @@ export interface ControlButtonProps {
 	image: string
 	moreClasses?: CSSProperties
 	onClick: () => void
-	translate?: number
+	translate?: number,
+	isRoundControl?: boolean
 }
 
 export interface LambBoardGameDetails {

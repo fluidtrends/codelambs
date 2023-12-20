@@ -1,9 +1,9 @@
-import RoundControls from '../round-controls'
 import { getControls } from '../../utils/helper'
-import { numberControlMargin, numberControlSize, numberTranslate, numbers, numbersInitialAngle } from '../../utils/constants'
+import { numberControlSize, numbers } from '../../utils/constants'
 import useSelectedStepStore from '../../stores/selectedStep'
 import useInputDetailsStore from '../../stores/inputDetails'
 import useStepsStore from '../../stores/steps'
+import Button from '../round-controls/Button'
 
 const NumberControls = () => {
 	const { selectedStep } = useSelectedStepStore()
@@ -18,20 +18,16 @@ const NumberControls = () => {
 		}
 	}
 
+	const controls = getControls(numbers, handleClickNumber, {
+		width: `${numberControlSize}vw`,
+		height: `${numberControlSize}vw`,
+		position: 'static'
+	})
+
 	return (
-		<RoundControls
-			controlImage='/images/button 1-9.png'
-			buttons={getControls(numbers, handleClickNumber, {
-				width: `${numberControlSize}vw`,
-				height: `${numberControlSize}vw`,
-				margin: `${numberControlMargin}vw`,
-			}, numberTranslate)}
-			initialAngle={numbersInitialAngle}
-			style={{
-				marginTop: '2vw',
-				marginBottom: '2vw'
-			}}
-		/>
+		<div className='grid grid-cols-3 grid-rows-3 justify-between items-center w-full'>
+			{controls.map((button, index) => <Button {...button} key={index} />)}
+		</div>
 	)
 }
 
