@@ -1,19 +1,26 @@
 import { actionButtonWonModal } from "../../utils/constants"
 import { resetCurrentLevel } from "../../utils/helper"
+import { NavButtonProps } from "../../utils/interfaces"
 import Actions from "../modal-win/Actions"
 import RetryBoard from "./RetryBoard"
 
 const ModalOver = () => {
-	const actions = [
+	const actions: NavButtonProps[] = [
 		{
 			image: 'button-board home.png',
 			onClick: () => resetCurrentLevel(),
-			moreClasses: `w-[${actionButtonWonModal}vw] h-[${actionButtonWonModal}vw]`
+			moreClasses: {
+				width: `${actionButtonWonModal}vw`,
+				height: `${actionButtonWonModal}vw`
+			}
 		},
 		{
 			image: 'button-board retry.svg',
 			onClick: () => resetCurrentLevel(),
-			moreClasses: `w-[40%] h-[${actionButtonWonModal - 1}vw]`
+			moreClasses: {
+				width: `${actionButtonWonModal}vw`,
+				height: `${actionButtonWonModal}vw`
+			}
 		},
 	]
 
