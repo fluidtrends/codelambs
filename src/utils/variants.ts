@@ -7,3 +7,16 @@ export const popupVariant = {
 		damping: 20
 	}
 }
+
+export const bounceVariant = (initialColor: string, finalColor: string) => ({
+	initial: { y: 0, color: initialColor },
+	animate: {
+		y: [-10, 5, 0],
+		color: finalColor,
+		transition: {
+			type: 'spring',
+			stiffness: 140,
+			damping: 10
+		}
+	}
+})

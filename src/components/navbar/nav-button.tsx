@@ -1,10 +1,11 @@
 import { navActionSize } from "../../utils/constants"
-import { cn } from "../../utils/helper"
+import { NavButtonProps } from "../../utils/interfaces"
 
-const NavButton = ({ image, onClick, moreClasses }: any) => {
+const NavButton = ({ image, onClick, moreClasses }: NavButtonProps) => {
 	return (
 		<img
-			className={cn(`w-[${navActionSize}vw] h-[${navActionSize}vw] hover:cursor-pointer text-secondary -translate-y-[0.2vw]`, moreClasses ?? '')}
+			className={`w-[${navActionSize}vw] h-[${navActionSize}vw] hover:cursor-pointer text-secondary -translate-y-[0.2vw]`}
+			style={moreClasses}
 			src={`/images/${image}`}
 			onClick={onClick}
 			onContextMenu={event => event.preventDefault()}

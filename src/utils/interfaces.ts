@@ -48,3 +48,9 @@ export interface LambBoardGameDetails {
 	y: number
 	orientation: Coordinates
 }
+
+export interface NavButtonProps {
+	image: string
+	onClick: () => void
+	moreClasses?: CSSProperties
+}

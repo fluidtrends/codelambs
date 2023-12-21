@@ -22,8 +22,6 @@ import ModalOrientation from '../modal-orientation/ModalOrientation'
 import ModalWin from '../modal-win'
 import useGameIndexStore from '../../stores/gameIndex'
 import { GetBoardDimensions, GetLambPosition, GetObstacles, GetWord } from '../../hooks/query'
-import { motion } from 'framer-motion'
-import { popupVariant } from '../../utils/variants'
 import Loading from '../loading'
 import { useElementSize } from 'usehooks-ts'
 
@@ -135,11 +133,7 @@ const Game = () => {
 				</div>
 				: <ModalOrientation />
 			}
-			{isGameWon() &&
-				<motion.div {...popupVariant} className='absolute w-full h-full top-0 left-0 z-50' >
-					<ModalWin />
-				</motion.div>
-			}
+			<ModalWin isVisible={isGameWon()} />
 		</div>
 	)
 }

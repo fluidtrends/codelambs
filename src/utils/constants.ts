@@ -3,6 +3,7 @@ import { Coordinates } from "./types"
 
 export const greenLight = '#00b900'
 export const greenDark = '#1c6b00'
+export const gray = '#b5b5b5'
 
 export const coords = [
 	Coordinates.NORTH,
